@@ -67,6 +67,10 @@ public class BigodeActions {
             statement = conn.createStatement();
             ResultSet resultSet = statement.executeQuery(query);
 
+            if(!resultSet.next()){
+                return "There were no available results to the specified query";
+            }
+
             while (resultSet.next()){
                 response +=  resultSet.getNString(1) + "\n";
             }
