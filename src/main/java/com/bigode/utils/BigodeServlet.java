@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
 
-@WebServlet(value = "/api/v1/")
+@WebServlet(value = "/api/v1/*")
 public class BigodeServlet extends HttpServlet{
     private static final long serialVersionUID = 1L;
 
@@ -38,7 +38,7 @@ public class BigodeServlet extends HttpServlet{
             out.print("<h3>DB connection test was successful</h3>");
         }
         out.print("<h3>You have successfully issued a GET request!</h3>");
-        out.print("<h4>"+ request.getPathInfo() +"</h4>");
+        out.print("<h4>Additional path info: "+ request.getPathInfo() +"</h4>");
         out.print("</body></html>");
     }
 
