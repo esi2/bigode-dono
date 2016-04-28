@@ -68,7 +68,7 @@ public class BigodeActions {
             ResultSet resultSet = statement.executeQuery(query);
 
             while (resultSet.next()){
-                response +=  resultSet.toString() + "\n";
+                response +=  resultSet.getNString(1) + "\n";
             }
         } catch (Exception e) {
             return "[Erro] " + e.toString();
