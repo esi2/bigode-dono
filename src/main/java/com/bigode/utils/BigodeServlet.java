@@ -39,6 +39,7 @@ public class BigodeServlet extends HttpServlet{
         }
         out.print("<h3>You have successfully issued a GET request!</h3>");
         out.print("<h4>Additional path info: "+ request.getPathInfo() +"</h4>");
+        out.print("<h4>URL parameters: "+ request.getParameterMap() +"</h4>");
         out.print("</body></html>");
     }
 
