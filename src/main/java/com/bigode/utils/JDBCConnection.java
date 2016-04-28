@@ -1,4 +1,4 @@
-package com.bigode.utils;
+package main.java.com.bigode.utils;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
