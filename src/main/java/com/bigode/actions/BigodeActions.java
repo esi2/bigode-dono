@@ -62,7 +62,7 @@ public class BigodeActions {
         try {
             Connection conn = JDBCConnection.getJdbcInstance().connect();
 
-            String query = "SELECT * FROM PEDIDOS";
+            String query = "SELECT * FROM PEDIDO";
 
             statement = conn.createStatement();
             ResultSet resultSet = statement.executeQuery(query);
