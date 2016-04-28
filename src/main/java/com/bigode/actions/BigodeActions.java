@@ -54,4 +54,26 @@ public class BigodeActions {
 
         return response;
     }
+
+    public static String getPedidosTeste(){
+        String response = "";
+        Statement statement;
+
+        try {
+            Connection conn = JDBCConnection.getJdbcInstance().connect();
+
+            String query = "SELECT * FROM PEDIDOS";
+
+            statement = conn.createStatement();
+            ResultSet resultSet = statement.executeQuery(query);
+
+            while (resultSet.next()){
+                response +=  resultSet.toString() + "\n";
+            }
+        } catch (Exception e) {
+            return "[Erro] " + e.toString();
+        }
+
+        return response;
+    }
 }

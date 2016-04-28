@@ -45,7 +45,8 @@ public class BigodeServlet extends HttpServlet{
         }
         out.print("<h3>You have successfully issued a GET request!</h3>");
         out.print("<h4>Additional path info: "+ request.getPathInfo() +"</h4>");
-        out.print("<h4>Teste tabelas mysql: " + BigodeActions.getMysqlTableNames() +"</h4>");
+        out.print("<h4>Recuperando nome das tabelas mysql: " + BigodeActions.getMysqlTableNames() +"</h4>");
+        out.print("<h4>Recuperando pedidos mysql: " + BigodeActions.getPedidosTeste() +"</h4>");
         out.print("<h4>URL parameters: "+ request.getParameterMap() +"</h4>");
 
 //        response.setContentType("application/json");
