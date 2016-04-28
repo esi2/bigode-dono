@@ -1,5 +1,9 @@
 package main.java.com.bigode.utils;
 
+import com.google.gson.Gson;
+import main.java.com.bigode.actions.BigodeActions;
+import main.java.com.bigode.model.Pedido;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -8,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
+import java.util.List;
 
 @WebServlet(value = "/api/v1/*")
 public class BigodeServlet extends HttpServlet{
@@ -30,7 +35,8 @@ public class BigodeServlet extends HttpServlet{
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        response.setContentType("text/html");
+        response.setContentType("application/text");
+        response.setCharacterEncoding("UTF-8");
         PrintWriter out = response.getWriter();
 
         out.print("<html><body>");
@@ -39,8 +45,14 @@ public class BigodeServlet extends HttpServlet{
         }
         out.print("<h3>You have successfully issued a GET request!</h3>");
         out.print("<h4>Additional path info: "+ request.getPathInfo() +"</h4>");
+        out.print("<h4>Teste tabelas mysql: " + BigodeActions.getMysqlTableNames() +"</h4>");
         out.print("<h4>URL parameters: "+ request.getParameterMap() +"</h4>");
-        out.print("</body></html>");
+
+//        response.setContentType("application/json");
+//        List<Pedido> pedidoList = BigodeActions.getPedidosDasMesas();
+//        String jsonResponse = new Gson().toJson(pedidoList);
+//        out.print(jsonResponse);
+//        out.flush();
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
