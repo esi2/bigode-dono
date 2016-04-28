@@ -33,14 +33,6 @@ public class JDBCConnection {
         catch (ClassNotFoundException classEx){
             classEx.printStackTrace();
         }
-        finally {
-            try {
-                connection.close();
-            }
-            catch(Exception e){
-                e.printStackTrace();
-            }
-        }
 
         return connection;
     }

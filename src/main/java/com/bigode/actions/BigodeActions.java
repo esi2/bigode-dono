@@ -40,7 +40,7 @@ public class BigodeActions {
         try {
             Connection conn = JDBCConnection.getJdbcInstance().connect();
 
-            String query = "SELECT table_name FROM information_schema.tables";
+            String query = "SELECT table_name FROM information_schema.tables WHERE TABLE_SCHEMA LIKE 'BIGODE'";
 
             statement = conn.createStatement();
             ResultSet resultSet = statement.executeQuery(query);
@@ -49,7 +49,7 @@ public class BigodeActions {
                 response +=  resultSet.getNString(0) + "|";
             }
         } catch (Exception e) {
-            System.out.println("[Erro] " + e.toString());
+            return "[Erro] " + e.toString();
         }
 
         return response;
