@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
 
-@WebServlet(value = "/api/dono/v1/")
+@WebServlet(value = "/api/v1/")
 public class BigodeServlet extends HttpServlet{
     private static final long serialVersionUID = 1L;
 
@@ -31,19 +31,33 @@ public class BigodeServlet extends HttpServlet{
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html");
-        PrintWriter out=response.getWriter();
+        PrintWriter out = response.getWriter();
 
         out.print("<html><body>");
-        out.print("<h3>Hello Servlet</h3>");
+        if(getServletContext().getAttribute("DB_Success") == "True"){
+            out.print("<h3>DB connection test was successful</h3>");
+        }
+        out.print("<h3>You have successfully issued a GET request!</h3>");
+        out.print("<h4>"+ request.getPathInfo() +"</h4>");
         out.print("</body></html>");
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        //TODO
+        response.setContentType("text/html");
+        PrintWriter out=response.getWriter();
+
+        out.print("<html><body>");
+        out.print("<h3>You have successfully issued a POST request!</h3>");
+        out.print("</body></html>");
     }
 
     protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        //TODO
+        response.setContentType("text/html");
+        PrintWriter out=response.getWriter();
+
+        out.print("<html><body>");
+        out.print("<h3>You have successfully issued a PUT request!</h3>");
+        out.print("</body></html>");
     }
 
     protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
