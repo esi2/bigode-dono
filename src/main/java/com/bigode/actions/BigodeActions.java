@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BigodeActions {
-    private final int idBar = 0;
+    private static final int idBar = 0;
 
     public static List<Mesa> getPedidosDasMesas(){
         List<Mesa> response = new ArrayList<>();
