@@ -1,7 +1,15 @@
 package main.java;
 
-public class Bigode {
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
 
+@Configuration
+@ComponentScan
+@EnableAutoConfiguration
+public class Bigode {
     public static void main(String[] args){
+        SpringApplication.run(Bigode.class, args);
     }
 }

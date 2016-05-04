@@ -2,6 +2,7 @@ package main.java.com.bigode.actions;
 
 import main.java.com.bigode.model.Mesa;
 import main.java.com.bigode.utils.JDBCConnection;
+import org.springframework.stereotype.Component;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -9,6 +10,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+@Component
 public class BigodeActions {
     private static final int idBar = 0;
 
