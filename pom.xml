@@ -63,5 +63,6 @@
         <!-- The main class to start by executing java -jar -->
         <start-class>main.java.com.bigode.Bigode</start-class>
         <tomcat.version>7.0.68</tomcat.version>
+        <java.version>1.8</java.version>
     </properties>
 </project>
