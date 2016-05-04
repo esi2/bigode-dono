@@ -73,4 +73,9 @@
             <url>https://repo.spring.io/libs-release</url>
         </pluginRepository>
     </pluginRepositories>
+
+    <properties>
+        <!-- The main class to start by executing java -jar -->
+        <start-class>main.java.com.bigode.Bigode</start-class>
+    </properties>
 </project>
