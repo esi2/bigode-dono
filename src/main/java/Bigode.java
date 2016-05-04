@@ -2,13 +2,20 @@ package main.java;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.context.web.SpringBootServletInitializer;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
 @ComponentScan
 @EnableAutoConfiguration
-public class Bigode {
+public class Bigode extends SpringBootServletInitializer{
+    @Override
+    protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
+        return application.sources(Bigode.class);
+    }
+
     public static void main(String[] args){
         SpringApplication.run(Bigode.class, args);
     }
