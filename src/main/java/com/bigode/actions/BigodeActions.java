@@ -67,6 +67,8 @@ public class BigodeActions {
             while (resultSet.next()){
                 response +=  resultSet.getNString(1) + "|";
             }
+
+            conn.close();
         } catch (Exception e) {
             return "[Erro] " + e.toString();
         }
@@ -93,6 +95,8 @@ public class BigodeActions {
             while (resultSet.next()){
                 response +=  resultSet.getNString(1) + "\n";
             }
+
+            conn.close();
         } catch (Exception e) {
             return "[Erro] " + e.toString();
         }

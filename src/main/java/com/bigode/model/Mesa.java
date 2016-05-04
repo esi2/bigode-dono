@@ -11,7 +11,5 @@ public class Mesa {
         pedidos = Collections.emptyList();
     }
 
-    public Mesa(List<Pedido> pedidos){
-        this.pedidos = pedidos;
-    }
+    public Mesa(List<Pedido> pedidos){ this.pedidos = pedidos; }
 }
