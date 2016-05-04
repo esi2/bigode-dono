@@ -1,6 +1,6 @@
-package main.java.com.bigode.utils;
+package main.java.com.bigode.util;
 
-import main.java.com.bigode.actions.BigodeActions;
+import main.java.com.bigode.action.BigodeActions;
 import main.java.com.bigode.model.Mesa;
 import main.java.com.bigode.model.Pedido;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,12 +43,12 @@ class BigodeAPI {
 
 
     // TEMP -----------------------------------------------------------------------
-    @RequestMapping(path = "/utils/tabelas", method = RequestMethod.GET)
+    @RequestMapping(path = "/util/tabelas", method = RequestMethod.GET)
     public String getNomesTabelasMysql(){
         return BigodeActions.getMysqlTableNames();
     }
 
-    @RequestMapping(path = "/utils/pedidos", method = RequestMethod.GET)
+    @RequestMapping(path = "/util/pedidos", method = RequestMethod.GET)
     public String getPedidosMysql(){
         return BigodeActions.getPedidosTeste();
     }

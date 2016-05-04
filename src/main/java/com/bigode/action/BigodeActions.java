@@ -1,8 +1,8 @@
-package main.java.com.bigode.actions;
+package main.java.com.bigode.action;
 
 import main.java.com.bigode.model.Mesa;
 import main.java.com.bigode.model.Pedido;
-import main.java.com.bigode.utils.JDBCConnection;
+import main.java.com.bigode.util.JDBCConnection;
 import org.springframework.stereotype.Component;
 
 import java.sql.Connection;
