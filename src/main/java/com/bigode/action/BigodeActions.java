@@ -1,5 +1,6 @@
 package main.java.com.bigode.action;
 
+import main.java.com.bigode.exception.RequestProblemException;
 import main.java.com.bigode.model.Mesa;
 import main.java.com.bigode.model.Pedido;
 import main.java.com.bigode.util.JDBCConnection;
@@ -102,5 +103,13 @@ public class BigodeActions {
         }
 
         return response;
+    }
+
+    public static String getErrorTest(){
+        throw new IllegalArgumentException("damn");
+    }
+
+    public static String getCustomErrorTest() throws RequestProblemException{
+        throw new RequestProblemException("custom damn");
     }
 }

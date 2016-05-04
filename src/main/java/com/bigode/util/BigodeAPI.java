@@ -1,6 +1,7 @@
 package main.java.com.bigode.util;
 
 import main.java.com.bigode.action.BigodeActions;
+import main.java.com.bigode.exception.RequestProblemException;
 import main.java.com.bigode.model.Mesa;
 import main.java.com.bigode.model.Pedido;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,6 +52,16 @@ class BigodeAPI {
     @RequestMapping(path = "/util/pedidos", method = RequestMethod.GET)
     public String getPedidosMysql(){
         return BigodeActions.getPedidosTeste();
+    }
+
+    @RequestMapping(path = "/util/400", method = RequestMethod.GET)
+    public String getErrorTest(){
+        return BigodeActions.getErrorTest();
+    }
+
+    @RequestMapping(path = "/util/400/custom", method = RequestMethod.GET)
+    public String getCustomErrorTest() throws RequestProblemException{
+        return BigodeActions.getCustomErrorTest();
     }
 
 }
