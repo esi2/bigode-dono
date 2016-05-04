@@ -1,6 +1,7 @@
 package main.java.com.bigode.actions;
 
 import main.java.com.bigode.model.Mesa;
+import main.java.com.bigode.model.Pedido;
 import main.java.com.bigode.utils.JDBCConnection;
 import org.springframework.stereotype.Component;
 
@@ -14,7 +15,7 @@ import java.util.List;
 public class BigodeActions {
     private static final int idBar = 0;
 
-    public static List<Mesa> getPedidosDasMesas(){
+    public static List<Mesa> getListaPedidos(){
         List<Mesa> response = new ArrayList<>();
         Statement statement;
 
@@ -32,6 +33,22 @@ public class BigodeActions {
         } catch (Exception e) {
             System.out.println("[Erro] " + e.toString());
         }
+        return response;
+    }
+
+    public static Mesa getListaPedidosMesa(Long numeroMesa){
+        Mesa response = new Mesa();
+        Statement statement;
+
+        //TODO
+        return response;
+    }
+
+    public static Pedido getDetalhesPedido(Long numeroMesa, Long numeroPedido){
+        Pedido response = new Pedido();
+        Statement statement;
+
+        //TODO
         return response;
     }
 
