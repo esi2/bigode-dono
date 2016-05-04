@@ -41,7 +41,7 @@ public class BigodeApiTest extends AbstractApiTest {
 
         List<Mesa> mesaList = new ArrayList<>();
 
-        //when(customerAction.loadMoney(anyLong(), (Transaction.LoadMoneyInput) any())).thenReturn(transactionResponse);
+        //when(bigodeActions.getErrorTest()).thenReturn(criar_var);
 
         mvc.perform(
                 get("/api/v1/mesas")
