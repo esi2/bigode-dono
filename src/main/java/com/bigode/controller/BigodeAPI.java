@@ -1,4 +1,4 @@
-package main.java.com.bigode.util;
+package main.java.com.bigode.controller;
 
 import main.java.com.bigode.action.BigodeActions;
 import main.java.com.bigode.exception.RequestProblemException;
@@ -14,7 +14,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1")
-class BigodeAPI {
+public class BigodeApi {
 
     @Autowired
     private BigodeActions bigodeActions = null;
