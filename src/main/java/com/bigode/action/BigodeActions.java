@@ -20,16 +20,36 @@ public class BigodeActions {
         List<Mesa> response = new ArrayList<>();
         Statement statement;
 
+        int indiceMesa = -1;
+        List<Pedido> pedidoLista = new ArrayList<>();
+
         try {
             Connection conn = JDBCConnection.getJdbcInstance().connect();
 
-            String query = "SELECT * FROM PEDIDOS WHERE STATUS LIKE \"PENDENTE\" AND ID_BAR="+ idBar;
+            String query = "SELECT * FROM PEDIDO WHERE PEDIDO.STATUS_PEDIDO LIKE \"PENDENTE\" ";
 
             statement = conn.createStatement();
             ResultSet resultSet = statement.executeQuery(query);
 
             while (resultSet.next()){
-                response.add(new Mesa());
+                if(resultSet.getRow() == 1){
+                    indiceMesa = Integer.parseInt(resultSet.getString(2));
+                }
+
+                if(indiceMesa != Integer.parseInt(resultSet.getString(2)) &&
+                        pedidoLista.size() > 0) {
+                    response.add(new Mesa(indiceMesa, pedidoLista));
+                    indiceMesa = Integer.parseInt(resultSet.getString(2));
+                } else{
+                    List<Pedido.ItemPedido<String, Long>> listaItem = new ArrayList<>();
+                    Pedido.ItemPedido itemPedido = new Pedido.ItemPedido(resultSet.getString(3), resultSet.getString(4));
+                    listaItem.add(itemPedido);
+
+
+                    Pedido pedido = new Pedido(listaItem);
+                    pedidoLista.add(pedido);
+                }
+
             }
         } catch (Exception e) {
             System.out.println("[Erro] " + e.toString());
