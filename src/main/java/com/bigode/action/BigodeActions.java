@@ -26,7 +26,7 @@ public class BigodeActions {
         try {
             Connection conn = JDBCConnection.getJdbcInstance().connect();
 
-            String query = "SELECT * FROM PEDIDO WHERE PEDIDO.STATUS_PEDIDO LIKE \"PENDENTE\" ";
+            String query = "SELECT * FROM PEDIDO WHERE PEDIDO.STATUS_PEDIDO LIKE 'PENDENTE' ";
 
             statement = conn.createStatement();
             ResultSet resultSet = statement.executeQuery(query);
@@ -79,7 +79,7 @@ public class BigodeActions {
         try {
             Connection conn = JDBCConnection.getJdbcInstance().connect();
             String query = "INSERT INTO PEDIDO(ID_PEDIDO, NUM_MESA, ID_PRODUTO, QUANTIDADE, STATUS_PEDIDO)" +
-                    "VALUES (NULL, "+numeroMesa+", 1, 3, \"PENDENTE\")";
+                    "VALUES (NULL, "+numeroMesa+", 1, 3, 'PENDENTE')";
 
             statement = conn.createStatement();
             ResultSet resultSet = statement.executeQuery(query);
