@@ -25,7 +25,7 @@ public class BigodeApi {
         return BigodeActions.getListaPedidos();
     }
 
-    @RequestMapping(path = "/mesas/fake/{numeroMesa}", method = RequestMethod.PUT)
+    @RequestMapping(path = "/mesas/fake/{numeroMesa}", method = RequestMethod.GET)
     public void criaMesaFake(
             @PathVariable Long numeroMesa
     ){
