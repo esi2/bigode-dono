@@ -39,6 +39,7 @@ public class BigodeActions {
                 if(indiceMesa != Integer.parseInt(resultSet.getString(2)) &&
                         pedidoLista.size() > 0) {
                     response.add(new Mesa(indiceMesa, pedidoLista));
+                    pedidoLista.clear();
                     indiceMesa = Integer.parseInt(resultSet.getString(2));
                 } else{
                     List<Pedido.ItemPedido<String, Long>> listaItem = new ArrayList<>();
