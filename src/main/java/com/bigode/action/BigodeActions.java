@@ -76,6 +76,11 @@ public class BigodeActions {
                 }
 
             }
+            
+            //fechando ultima mesa
+            response.add(new Mesa(indiceMesa, pedidoLista));
+            pedidoLista.clear();
+            indiceMesa = -1;
         } catch (Exception e) {
             System.out.println("[Erro] " + e.toString());
         } finally {
