@@ -1,13 +1,16 @@
 package main.java.com.bigode.action;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import main.java.com.bigode.exception.RequestProblemException;
 import main.java.com.bigode.model.Mesa;
 import main.java.com.bigode.model.Pedido;
 import main.java.com.bigode.util.JDBCConnection;
+import org.junit.runner.Result;
 import org.springframework.stereotype.Component;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,8 +18,30 @@ import java.util.List;
 @Component
 public class BigodeActions {
     private static final int idBar = 0;
+    private static Connection conn;
 
-    public static List<Mesa> getListaPedidos(){
+    public static long checkQuery() throws SQLException {
+        Statement statement;
+
+        try{
+            conn = JDBCConnection.getJdbcInstance().connect();
+
+            String query = "SELECT * FROM PEDIDO";
+            statement = conn.createStatement();
+            ResultSet resultSet = statement.executeQuery(query);
+
+            resultSet.last();
+            return (long)resultSet.getRow();
+        } catch (Exception e) {
+            System.out.println("[Erro] " + e.toString());
+        } finally {
+            conn.close();
+        }
+
+        return -1L;
+    }
+
+    public static List<Mesa> getListaPedidos() throws SQLException {
         List<Mesa> response = new ArrayList<>();
         Statement statement;
 
@@ -24,36 +49,44 @@ public class BigodeActions {
         List<Pedido> pedidoLista = new ArrayList<>();
 
         try {
-            Connection conn = JDBCConnection.getJdbcInstance().connect();
+            conn = JDBCConnection.getJdbcInstance().connect();
 
-            String query = "SELECT * FROM PEDIDO WHERE PEDIDO.STATUS_PEDIDO LIKE 'PENDENTE' ";
+            String query = "SELECT * FROM PEDIDO WHERE PEDIDO.STATUS_PEDIDO LIKE 'ativo'";
 
             statement = conn.createStatement();
             ResultSet resultSet = statement.executeQuery(query);
 
             while (resultSet.next()){
+                int numMesaAtual = Integer.parseInt(resultSet.getString("NUM_MESA"));
+
                 if(resultSet.getRow() == 1){
-                    indiceMesa = Integer.parseInt(resultSet.getString(2));
+                    indiceMesa = numMesaAtual;
                 }
 
-                if(indiceMesa != Integer.parseInt(resultSet.getString(2)) &&
-                        pedidoLista.size() > 0) {
+                if(indiceMesa != numMesaAtual && pedidoLista.size() > 0) {
                     response.add(new Mesa(indiceMesa, pedidoLista));
                     pedidoLista.clear();
-                    indiceMesa = Integer.parseInt(resultSet.getString(2));
-                } else{
-                    List<Pedido.ItemPedido<String, Long>> listaItem = new ArrayList<>();
-                    Pedido.ItemPedido itemPedido = new Pedido.ItemPedido(resultSet.getString(3), resultSet.getString(4));
-                    listaItem.add(itemPedido);
-
-
-                    Pedido pedido = new Pedido(listaItem);
-                    pedidoLista.add(pedido);
+                    indiceMesa = numMesaAtual;
                 }
 
+                List<Pedido.ItemPedido> listaItem = new ArrayList<>();
+                Pedido.ItemPedido itemPedido = new Pedido.ItemPedido(Long.parseLong(resultSet.getString("ID_PRODUTO")),
+                        Long.parseLong(resultSet.getString("QUANTIDADE")));
+                listaItem.add(itemPedido);
+
+                Pedido pedido = new Pedido(listaItem);
+                pedidoLista.add(pedido);
+
             }
+
+            //fechando ultima mesa
+            response.add(new Mesa(indiceMesa, pedidoLista));
+            pedidoLista.clear();
+            indiceMesa = -1;
         } catch (Exception e) {
             System.out.println("[Erro] " + e.toString());
+        } finally {
+            conn.close();
         }
         return response;
     }
