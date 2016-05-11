@@ -1,9 +1,13 @@
 package main.java.com.bigode.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.List;
 
+@JsonFormat(shape = JsonFormat.Shape.OBJECT)
 public class Pedido {
-    private List<ItemPedido<String, Long>> itens;
+    @JsonProperty private List<ItemPedido<String, Long>> itens;
 
     public Pedido(){}
 
@@ -11,9 +15,10 @@ public class Pedido {
         this.itens = itens;
     }
 
+    @JsonFormat(shape = JsonFormat.Shape.OBJECT)
     public static class ItemPedido<Item,Qtd> {
-        private Item item;
-        private Qtd qtd;
+        @JsonProperty private Item item;
+        @JsonProperty private Qtd qtd;
 
         public ItemPedido(Item item, Qtd qtd){
             this.item = item;

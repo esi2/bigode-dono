@@ -1,5 +1,6 @@
 package main.java.com.bigode.action;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import main.java.com.bigode.exception.RequestProblemException;
 import main.java.com.bigode.model.Mesa;
 import main.java.com.bigode.model.Pedido;
@@ -76,7 +77,7 @@ public class BigodeActions {
                 }
 
             }
-            
+
             //fechando ultima mesa
             response.add(new Mesa(indiceMesa, pedidoLista));
             pedidoLista.clear();
