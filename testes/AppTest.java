@@ -6,6 +6,7 @@ import static org.junit.Assert.*;
 import static org.hamcrest.CoreMatchers.*;
 import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 import org.openqa.selenium.support.ui.Select;
 
 public class AppTest {
@@ -18,7 +19,7 @@ public class AppTest {
 
   @Before
   public void setUp() throws Exception {
-    driver = new FirefoxDriver();
+    driver = new HtmlUnitDriver();
     baseUrl = "http://143.107.58.177:8080/";
     driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
   }
