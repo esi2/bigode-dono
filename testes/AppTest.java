@@ -34,7 +34,7 @@ public class AppTest {
     	existe = true;
     assertTrue(existe);
   }  
-  
+  /*testes que serao adaptados com a conexao, funcionando quando existir algo a pagar
   @Test
   public void testeAbreFechaPagar() throws Exception{
 	driver.get(baseUrl + "/bigode-dono/");
@@ -47,6 +47,19 @@ public class AppTest {
 	driver.get(baseUrl + "/bigode-dono/");
     driver.findElement(By.cssSelector("button.btn.btn-pago")).click();
   }
+  
+  @Test
+  public void testeAbreFechaEntregar() throws Exception{
+	driver.get(baseUrl + "/bigode-dono/");
+    driver.findElement(By.cssSelector("div.article.entregue-master-class > div.item.row > div.col-xs-9 > p.source")).click();
+    driver.findElement(By.cssSelector("div.article.entregue-master-class > div.item.row > div.col-xs-9 > p.source")).click();
+  }
+  
+  @Test
+  public void clicaEntregue() throws Exception{
+	driver.get(baseUrl + "/bigode-dono/");
+    driver.findElement(By.cssSelector("button.btn.btn-entregue")).click();
+  }*/
 
   @After
   public void tearDown() throws Exception {
