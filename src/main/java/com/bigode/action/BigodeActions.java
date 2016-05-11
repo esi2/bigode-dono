@@ -4,6 +4,7 @@ import main.java.com.bigode.exception.RequestProblemException;
 import main.java.com.bigode.model.Mesa;
 import main.java.com.bigode.model.Pedido;
 import main.java.com.bigode.util.JDBCConnection;
+import org.junit.runner.Result;
 import org.springframework.stereotype.Component;
 
 import java.sql.Connection;
@@ -18,7 +19,28 @@ public class BigodeActions {
     private static final int idBar = 0;
     private static Connection conn;
 
-    public static String getListaPedidos() throws SQLException {
+    public static long checkQuery() throws SQLException {
+        Statement statement;
+
+        try{
+            conn = JDBCConnection.getJdbcInstance().connect();
+
+            String query = "SELECT * FROM PEDIDO";
+            statement = conn.createStatement();
+            ResultSet resultSet = statement.executeQuery(query);
+
+            resultSet.last();
+            return (long)resultSet.getRow();
+        } catch (Exception e) {
+            System.out.println("[Erro] " + e.toString());
+        } finally {
+            conn.close();
+        }
+
+        return -1L;
+    }
+
+    public static List<Mesa> getListaPedidos() throws SQLException {
         List<Mesa> response = new ArrayList<>();
         Statement statement;
 
@@ -56,11 +78,10 @@ public class BigodeActions {
             }
         } catch (Exception e) {
             System.out.println("[Erro] " + e.toString());
-        }
-        finally {
+        } finally {
             conn.close();
         }
-        return response.toString();
+        return response;
     }
 
     public static Mesa getListaPedidosMesa(Long numeroMesa){
