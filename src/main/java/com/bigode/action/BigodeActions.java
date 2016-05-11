@@ -18,7 +18,7 @@ public class BigodeActions {
     private static final int idBar = 0;
     private static Connection conn;
 
-    public static List<Mesa> getListaPedidos() throws SQLException {
+    public static String getListaPedidos() throws SQLException {
         List<Mesa> response = new ArrayList<>();
         Statement statement;
 
@@ -60,7 +60,7 @@ public class BigodeActions {
         finally {
             conn.close();
         }
-        return response;
+        return response.toString();
     }
 
     public static Mesa getListaPedidosMesa(Long numeroMesa){

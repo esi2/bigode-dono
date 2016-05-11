@@ -21,7 +21,7 @@ public class BigodeApi {
     private BigodeActions bigodeActions = null;
 
     @RequestMapping(path = "/mesas", method = RequestMethod.GET)
-    public List<Mesa> getListaPedidos() throws SQLException{
+    public String getListaPedidos() throws SQLException{
         //TODO: Retornar lista de pedidos a serem entregues
         return BigodeActions.getListaPedidos();
     }
