@@ -15,10 +15,10 @@ public class Pedido {
         this.itens = itens;
     }
 
-    //@JsonFormat(shape = JsonFormat.Shape.OBJECT)
+    @JsonFormat(shape = JsonFormat.Shape.OBJECT)
     public static class ItemPedido {
-        private long item;
-        private long qtd;
+        @JsonProperty private long item;
+        @JsonProperty private long qtd;
 
         public ItemPedido(long item, long qtd){
             this.item = item;
