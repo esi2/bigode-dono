@@ -7,26 +7,26 @@ import java.util.List;
 
 @JsonFormat(shape = JsonFormat.Shape.OBJECT)
 public class Pedido {
-    @JsonProperty private List<ItemPedido<String, Long>> itens;
+    @JsonProperty private List<ItemPedido> itens;
 
     public Pedido(){}
 
-    public Pedido(List<ItemPedido<String, Long>> itens){
+    public Pedido(List<ItemPedido> itens){
         this.itens = itens;
     }
 
-    @JsonFormat(shape = JsonFormat.Shape.OBJECT)
-    public static class ItemPedido<Item,Qtd> {
-        @JsonProperty private Item item;
-        @JsonProperty private Qtd qtd;
+    //@JsonFormat(shape = JsonFormat.Shape.OBJECT)
+    public static class ItemPedido {
+        private long item;
+        private long qtd;
 
-        public ItemPedido(Item item, Qtd qtd){
+        public ItemPedido(long item, long qtd){
             this.item = item;
             this.qtd = qtd;
         }
-        public Item getItem(){ return item; }
-        public Qtd getQtd(){ return qtd; }
-        public void setItem(Item item){ this.item = item; }
-        public void setQtd(Qtd qtd){ this.qtd = qtd; }
+        public long getItem(){ return item; }
+        public long getQtd(){ return qtd; }
+        public void setItem(long item){ this.item = item; }
+        public void setQtd(long qtd){ this.qtd = qtd; }
     }
 }

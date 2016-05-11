@@ -67,14 +67,15 @@ public class BigodeActions {
                     response.add(new Mesa(indiceMesa, pedidoLista));
                     pedidoLista.clear();
                     indiceMesa = numMesaAtual;
-                } else{
-                    List<Pedido.ItemPedido<String, Long>> listaItem = new ArrayList<>();
-                    Pedido.ItemPedido itemPedido = new Pedido.ItemPedido(resultSet.getString("ID_PRODUTO"), resultSet.getString("QUANTIDADE"));
-                    listaItem.add(itemPedido);
-
-                    Pedido pedido = new Pedido(listaItem);
-                    pedidoLista.add(pedido);
                 }
+
+                List<Pedido.ItemPedido> listaItem = new ArrayList<>();
+                Pedido.ItemPedido itemPedido = new Pedido.ItemPedido(Long.parseLong(resultSet.getString("ID_PRODUTO")),
+                        Long.parseLong(resultSet.getString("QUANTIDADE")));
+                listaItem.add(itemPedido);
+
+                Pedido pedido = new Pedido(listaItem);
+                pedidoLista.add(pedido);
 
             }
 
