@@ -39,7 +39,7 @@ public class AppTest {
   public void testeAbreFechaPagar() throws Exception{
 	driver.get(baseUrl + "/bigode-dono/");
     driver.findElement(By.cssSelector("div.article.pago-master-class > div.item.row > div.col-xs-9 > p.source")).click();
-    driver.findElement(By.xpath("//div[@id='todos-pedidos']/div[2]/div[2]/a/strong")).click();
+    driver.findElement(By.cssSelector("div.article.pago-master-class > div.item.row > div.col-xs-9 > p.source")).click();
   }
   
   @Test
