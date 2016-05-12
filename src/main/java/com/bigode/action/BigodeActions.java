@@ -64,9 +64,10 @@ public class BigodeActions {
                 }
 
                 if(indiceMesa != numMesaAtual && pedidoLista.size() > 0) {
-                    response.add(new Mesa(indiceMesa, pedidoLista));
-                    System.out.println("tamanho = " + pedidoLista.size());
+                    Mesa mesa = new Mesa(indiceMesa, pedidoLista);
+                    response.add(mesa);
                     pedidoLista.clear();
+                    System.out.println("Tamanho do pedido na mesa: " + mesa.getPedidos().size());
                     indiceMesa = numMesaAtual;
                 }
 
@@ -81,9 +82,10 @@ public class BigodeActions {
             }
 
             //fechando ultima mesa
-            response.add(new Mesa(indiceMesa, pedidoLista));
-            System.out.println("tamanho = " + pedidoLista.size());
+            Mesa mesa = new Mesa(indiceMesa, pedidoLista);
+            response.add(mesa);
             pedidoLista.clear();
+            System.out.println("Tamanho do pedido na mesa: " + mesa.getPedidos().size());
             indiceMesa = -1;
         } catch (Exception e) {
             System.out.println("[Erro] " + e.toString());

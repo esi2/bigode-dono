@@ -20,4 +20,12 @@ public class Mesa {
         this.numeroMesa = numeroMesa;
         this.pedidos = pedidos;
     }
+
+    public int getNumeroMesa(){
+        return numeroMesa;
+    }
+
+    public List<Pedido> getPedidos(){
+        return pedidos;
+    }
 }
