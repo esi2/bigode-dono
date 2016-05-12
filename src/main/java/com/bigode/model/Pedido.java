@@ -21,16 +21,29 @@ public class Pedido {
 
     @JsonFormat(shape = JsonFormat.Shape.OBJECT)
     public static class ItemPedido {
-        @JsonProperty private long item;
+        @JsonProperty private long id;
+        @JsonProperty private String nome;
+        @JsonProperty private long preco;
+        @JsonProperty private String foto;
         @JsonProperty private long qtd;
 
-        public ItemPedido(long item, long qtd){
-            this.item = item;
+        public ItemPedido(long id, String nome, long preco, String foto, long qtd) {
+            this.id = id;
+            this.nome = nome;
+            this.preco = preco;
+            this.foto = foto;
             this.qtd = qtd;
         }
-        public long getItem(){ return item; }
-        public long getQtd(){ return qtd; }
-        public void setItem(long item){ this.item = item; }
-        public void setQtd(long qtd){ this.qtd = qtd; }
+
+        public long getId() {return id;}
+
+        public String getNome() {return nome;}
+
+        public long getPreco() {return preco;}
+
+        public String getFoto() {return foto;}
+
+        public long getQtd() {return qtd;}
+
     }
 }

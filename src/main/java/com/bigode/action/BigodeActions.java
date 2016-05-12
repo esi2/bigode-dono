@@ -51,7 +51,9 @@ public class BigodeActions {
         try {
             conn = JDBCConnection.getJdbcInstance().connect();
 
-            String query = "SELECT * FROM PEDIDO WHERE PEDIDO.STATUS_PEDIDO LIKE 'ativo'";
+            String query = "SELECT * FROM PEDIDO " +
+                    "LEFT JOIN PRODUTO ON PEDIDO.ID_PRODUTO = PRODUTO.ID_PRODUTO" +
+                    "WHERE PEDIDO.STATUS_PEDIDO LIKE 'ativo'";
 
             statement = conn.createStatement();
             ResultSet resultSet = statement.executeQuery(query);
@@ -67,15 +69,17 @@ public class BigodeActions {
                     Mesa mesa = new Mesa(indiceMesa, pedidoLista);
                     response.add(mesa);
                     pedidoLista.clear();
-                    System.out.println("Tamanho do pedido na mesa: " + mesa.getPedidos().size());
-                    System.out.println("Amostra de item: " + mesa.getPedidos().get(0).getItens().get(0).getItem() + " - " +
-                    mesa.getPedidos().get(0).getItens().get(0).getQtd());
                     indiceMesa = numMesaAtual;
                 }
 
                 List<Pedido.ItemPedido> listaItem = new ArrayList<>();
-                Pedido.ItemPedido itemPedido = new Pedido.ItemPedido(Long.parseLong(resultSet.getString("ID_PRODUTO")),
-                        Long.parseLong(resultSet.getString("QUANTIDADE")));
+                Pedido.ItemPedido itemPedido =
+                        new Pedido.ItemPedido(
+                                Long.parseLong(resultSet.getString("ID_PRODUTO")),
+                                resultSet.getString("NOME_PRODUTO"),
+                                Long.parseLong(resultSet.getString("PRECO_PRODUTO")),
+                                resultSet.getString("FOTO_PRODUTO"),
+                                Long.parseLong(resultSet.getString("QUANTIDADE")));
                 listaItem.add(itemPedido);
 
                 Pedido pedido = new Pedido(listaItem);
@@ -86,9 +90,6 @@ public class BigodeActions {
             Mesa mesa = new Mesa(indiceMesa, pedidoLista);
             response.add(mesa);
             pedidoLista.clear();
-            System.out.println("Tamanho do pedido na mesa: " + mesa.getPedidos().size());
-            System.out.println("Amostra de item: " + mesa.getPedidos().get(0).getItens().get(0).getItem() + " - " +
-                    mesa.getPedidos().get(0).getItens().get(0).getQtd());
             indiceMesa = -1;
         } catch (Exception e) {
             System.out.println("[Erro] " + e.toString());
