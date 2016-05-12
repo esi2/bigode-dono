@@ -23,11 +23,11 @@ public class Pedido {
     public static class ItemPedido {
         @JsonProperty private long id;
         @JsonProperty private String nome;
-        @JsonProperty private long preco;
+        @JsonProperty private double preco;
         @JsonProperty private String foto;
         @JsonProperty private long qtd;
 
-        public ItemPedido(long id, String nome, long preco, String foto, long qtd) {
+        public ItemPedido(long id, String nome, double preco, String foto, long qtd) {
             this.id = id;
             this.nome = nome;
             this.preco = preco;
@@ -39,7 +39,7 @@ public class Pedido {
 
         public String getNome() {return nome;}
 
-        public long getPreco() {return preco;}
+        public double getPreco() {return preco;}
 
         public String getFoto() {return foto;}
 
