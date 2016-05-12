@@ -52,7 +52,7 @@ public class BigodeActions {
             String query = "SELECT * FROM PEDIDO " +
                     "LEFT JOIN PRODUTO " +
                     "ON PEDIDO.ID_PRODUTO = PRODUTO.ID_PRODUTO"
-                    //+ "AND STATUS_PEDIDO LIKE 'ativo'"
+                    // + "AND STATUS_PEDIDO LIKE 'ativo'"
                     ;
 
             statement = conn.createStatement();
