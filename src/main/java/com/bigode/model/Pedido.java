@@ -15,6 +15,10 @@ public class Pedido {
         this.itens = itens;
     }
 
+    public List<ItemPedido> getItens() {
+        return itens;
+    }
+
     @JsonFormat(shape = JsonFormat.Shape.OBJECT)
     public static class ItemPedido {
         @JsonProperty private long item;
