@@ -52,7 +52,7 @@ public class BigodeActions {
             String query = "SELECT * FROM PEDIDO " +
                     "LEFT JOIN PRODUTO " +
                     "ON PEDIDO.ID_PRODUTO = PRODUTO.ID_PRODUTO"
-                    + "AND STATUS_PEDIDO LIKE 'ativo'"
+                    //+ "AND STATUS_PEDIDO LIKE 'ativo'"
                     ;
 
             statement = conn.createStatement();
@@ -81,7 +81,10 @@ public class BigodeActions {
                                 Long.parseLong(resultSet.getString("QUANTIDADE")));
                 listaItem.add(itemPedido);
 
-                Pedido pedido = new Pedido(Long.parseLong(resultSet.getString("ID_PEDIDO")), listaItem);
+                Pedido pedido = new Pedido(
+                        Long.parseLong(resultSet.getString("ID_PEDIDO")),
+                        listaItem,
+                        resultSet.getString("STATUS_PEDIDO"));
                 pedidoLista.add(pedido);
             }
 
