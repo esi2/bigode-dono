@@ -52,8 +52,10 @@ public class BigodeActions {
             conn = JDBCConnection.getJdbcInstance().connect();
 
             String query = "SELECT * FROM PEDIDO " +
-                    "LEFT JOIN PRODUTO ON PEDIDO.ID_PRODUTO = PRODUTO.ID_PRODUTO" +
-                    "WHERE PEDIDO.STATUS_PEDIDO LIKE 'ativo'";
+                    "LEFT JOIN PRODUTO " +
+                    "ON PEDIDO.ID_PRODUTO = PRODUTO.ID_PRODUTO"
+                    //+ "WHERE PEDIDO.STATUS_PEDIDO LIKE 'ativo'"
+                    ;
 
             statement = conn.createStatement();
             ResultSet resultSet = statement.executeQuery(query);
