@@ -80,7 +80,6 @@ public class BigodeActions {
                                 Long.parseLong(resultSet.getString("ID_PRODUTO")),
                                 resultSet.getString("NOME_PRODUTO"),
                                 Double.parseDouble(resultSet.getString("PRECO_PRODUTO")),
-                                resultSet.getString("FOTO_PRODUTO"),
                                 Long.parseLong(resultSet.getString("QUANTIDADE")));
                 listaItem.add(itemPedido);
 
