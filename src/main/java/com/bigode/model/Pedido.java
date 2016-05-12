@@ -7,11 +7,13 @@ import java.util.List;
 
 @JsonFormat(shape = JsonFormat.Shape.OBJECT)
 public class Pedido {
+    @JsonProperty private long id;
     @JsonProperty private List<ItemPedido> itens;
 
     public Pedido(){}
 
-    public Pedido(List<ItemPedido> itens){
+    public Pedido(Long idPedido, List<ItemPedido> itens){
+        this.id = idPedido;
         this.itens = itens;
     }
 

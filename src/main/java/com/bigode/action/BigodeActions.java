@@ -1,11 +1,9 @@
 package main.java.com.bigode.action;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import main.java.com.bigode.exception.RequestProblemException;
 import main.java.com.bigode.model.Mesa;
 import main.java.com.bigode.model.Pedido;
 import main.java.com.bigode.util.JDBCConnection;
-import org.junit.runner.Result;
 import org.springframework.stereotype.Component;
 
 import java.sql.Connection;
@@ -54,7 +52,7 @@ public class BigodeActions {
             String query = "SELECT * FROM PEDIDO " +
                     "LEFT JOIN PRODUTO " +
                     "ON PEDIDO.ID_PRODUTO = PRODUTO.ID_PRODUTO"
-                    //+ "WHERE PEDIDO.STATUS_PEDIDO LIKE 'ativo'"
+                    + "WHERE STATUS_PEDIDO LIKE 'ativo'"
                     ;
 
             statement = conn.createStatement();
@@ -83,7 +81,7 @@ public class BigodeActions {
                                 Long.parseLong(resultSet.getString("QUANTIDADE")));
                 listaItem.add(itemPedido);
 
-                Pedido pedido = new Pedido(listaItem);
+                Pedido pedido = new Pedido(Long.parseLong(resultSet.getString("ID_PEDIDO")), listaItem);
                 pedidoLista.add(pedido);
             }
 
@@ -98,6 +96,25 @@ public class BigodeActions {
             conn.close();
         }
         return response;
+    }
+
+    public static void entregaPedido(Long idPedido) throws SQLException {
+        Statement statement;
+
+        try {
+            conn = JDBCConnection.getJdbcInstance().connect();
+
+            String query = "ALTER TABLE PEDIDO " +
+                    "SET PEDIDO.STATUS_PEDIDO = 'ENTREGUE'" +
+                    "WHERE PEDIDO.ID_PEDIDO = " + idPedido;
+
+            statement = conn.createStatement();
+            ResultSet resultSet = statement.executeQuery(query);
+        } catch (Exception e) {
+            System.out.println("[Erro] " + e.toString());
+        } finally {
+            conn.close();
+        }
     }
 
     public static Mesa getListaPedidosMesa(Long numeroMesa){
