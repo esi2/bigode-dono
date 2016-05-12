@@ -25,7 +25,7 @@ public class Pedido {
         @JsonProperty private String nome;
         @JsonProperty private long preco;
         @JsonProperty private String foto;
-        @JsonProperty private long qtd;
+        @JsonProperty private long qtd; 
 
         public ItemPedido(long id, String nome, long preco, String foto, long qtd) {
             this.id = id;
