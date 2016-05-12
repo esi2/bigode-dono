@@ -65,6 +65,7 @@ public class BigodeActions {
 
                 if(indiceMesa != numMesaAtual && pedidoLista.size() > 0) {
                     response.add(new Mesa(indiceMesa, pedidoLista));
+                    System.out.println("tamanho = " + pedidoLista.size());
                     pedidoLista.clear();
                     indiceMesa = numMesaAtual;
                 }
@@ -81,6 +82,7 @@ public class BigodeActions {
 
             //fechando ultima mesa
             response.add(new Mesa(indiceMesa, pedidoLista));
+            System.out.println("tamanho = " + pedidoLista.size());
             pedidoLista.clear();
             indiceMesa = -1;
         } catch (Exception e) {
