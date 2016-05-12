@@ -101,18 +101,37 @@ public class BigodeActions {
         return response;
     }
 
-    public static void entregaPedido(Long idPedido) throws SQLException {
+    public static void setPedidoEntregue(Long idPedido) throws SQLException {
         Statement statement;
 
         try {
             conn = JDBCConnection.getJdbcInstance().connect();
 
-            String query = "ALTER TABLE PEDIDO " +
+            String query = "UPDATE PEDIDO " +
                     "SET PEDIDO.STATUS_PEDIDO = 'ENTREGUE'" +
                     "WHERE PEDIDO.ID_PEDIDO = " + idPedido;
 
             statement = conn.createStatement();
-            ResultSet resultSet = statement.executeQuery(query);
+            statement.executeUpdate(query);
+        } catch (Exception e) {
+            System.out.println("[Erro] " + e.toString());
+        } finally {
+            conn.close();
+        }
+    }
+
+    public static void setPedidoPago(Long idPedido) throws SQLException {
+        Statement statement;
+
+        try {
+            conn = JDBCConnection.getJdbcInstance().connect();
+
+            String query = "UPDATE PEDIDO " +
+                    "SET PEDIDO.STATUS_PEDIDO = 'PAGO'" +
+                    "WHERE PEDIDO.ID_PEDIDO = " + idPedido;
+
+            statement = conn.createStatement();
+            statement.executeUpdate(query);
         } catch (Exception e) {
             System.out.println("[Erro] " + e.toString());
         } finally {

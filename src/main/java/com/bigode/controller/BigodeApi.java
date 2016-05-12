@@ -47,13 +47,28 @@ public class BigodeApi {
     }
 
     @RequestMapping(path = "/mesas/{numeroMesa}/pedidos/{numeroPedido}", method = RequestMethod.GET)
-    public void getDetalhesPedido(
+    public Pedido getDetalhesPedido(
+            @PathVariable Long numeroMesa,
+            @PathVariable Long numeroPedido
+    ){
+        //TODO: Retornar detalhes de um pedido especifico
+        return BigodeActions.getDetalhesPedido(numeroMesa, numeroPedido);
+    }
+
+    @RequestMapping(path = "/mesas/{numeroMesa}/pedidos/{numeroPedido}/entregue", method = RequestMethod.GET)
+    public void setPedidoEntregue(
             @PathVariable Long numeroMesa,
             @PathVariable Long numeroPedido
     ) throws SQLException {
-        //TODO: Retornar detalhes de um pedido especifico
-        //FIXME: PROVISORIAMENTE SENDO USADO PARA ENTREGAR PEDIDO
-        BigodeActions.entregaPedido(numeroPedido);
+        BigodeActions.setPedidoEntregue(numeroPedido);
+    }
+
+    @RequestMapping(path = "/mesas/{numeroMesa}/pedidos/{numeroPedido}/pago", method = RequestMethod.GET)
+    public void setPedidoPago(
+            @PathVariable Long numeroMesa,
+            @PathVariable Long numeroPedido
+    ) throws SQLException {
+        BigodeActions.setPedidoPago(numeroPedido);
     }
 
 
