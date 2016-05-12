@@ -114,7 +114,7 @@ public class BigodeActions {
         return response;
     }
 
-    public static void criaPedido(Long numeroMesa){
+    public static void criaPedido(Long numeroMesa) throws SQLException {
         Statement statement;
 
         try {
@@ -126,10 +126,12 @@ public class BigodeActions {
             ResultSet resultSet = statement.executeQuery(query);
         } catch (Exception e) {
             System.out.println("[Erro] " + e.toString());
+        } finally {
+            conn.close();
         }
     }
 
-    public static String getMysqlTableNames(){
+    public static String getMysqlTableNames() throws SQLException {
         String response = "";
         Statement statement;
 
@@ -148,12 +150,14 @@ public class BigodeActions {
             conn.close();
         } catch (Exception e) {
             return "[Erro] " + e.toString();
+        } finally {
+            conn.close();
         }
 
         return response;
     }
 
-    public static String getPedidosTeste(){
+    public static String getPedidosTeste() throws SQLException {
         String response = "";
         Statement statement;
 
@@ -176,6 +180,8 @@ public class BigodeActions {
             conn.close();
         } catch (Exception e) {
             return "[Erro] " + e.toString();
+        } finally {
+            conn.close();
         }
 
         return response;

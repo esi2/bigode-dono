@@ -34,7 +34,7 @@ public class BigodeApi {
     @RequestMapping(path = "/mesas/fake/{numeroMesa}", method = RequestMethod.GET)
     public void criaMesaFake(
             @PathVariable Long numeroMesa
-    ){
+    ) throws SQLException {
         BigodeActions.criaPedido(numeroMesa);
     }
 
@@ -58,12 +58,12 @@ public class BigodeApi {
 
     // TEMP -----------------------------------------------------------------------
     @RequestMapping(path = "/util/tabelas", method = RequestMethod.GET)
-    public String getNomesTabelasMysql(){
+    public String getNomesTabelasMysql() throws SQLException {
         return BigodeActions.getMysqlTableNames();
     }
 
     @RequestMapping(path = "/util/pedidos", method = RequestMethod.GET)
-    public String getPedidosMysql(){
+    public String getPedidosMysql() throws SQLException {
         return BigodeActions.getPedidosTeste();
     }
 
