@@ -1,11 +1,121 @@
 $(document).ready(function(){
 
-	$('.article').click(function() {
-		var teste = $(this).hasClass('current');
-		var toggle_btn = $(this).find(".item > #btn-container").hasClass('hide');
+	var mesa =	[
+		{
+			"numeroMesa":1,
+			"pedidos":[
+				{
+					"id":1,
+					"itens":[
+						{
+							"id":1,
+							"nome":"Cerveja",
+							"preco":5.0,
+							"qtd":1
+						}
+					]
+					,
+					"status":"ATIVO"
+				},
+				{
+					"id":2,
+					"itens":[
+						{
+							"id":2,
+							"nome":"Coxinha",
+							"preco":3.0,
+							"qtd":1
+						}
+					],
+					"status":"ATIVO"
+				},
+				{
+					"id":3,
+					"itens":[
+						{
+							"id":3,
+							"nome":"Cerveja",
+							"preco":5.0,
+							"qtd":1
+						}
+					],
+					"status":"ENTREGUE"
+				},
+				{
+					"id":4,
+					"itens":[
+						{
+							"id":4,
+							"nome":"Coxinha",
+							"preco":3.0,
+							"qtd":1
+						}
+					],
+					"status":"PAGO"
+				}
+			]
+		}
+	];
 
-		console.log(toggle_btn);
-		if(!teste) {
+	$("#clientTemplate").tmpl(mesa).appendTo("#todos-pedidos");
+
+	// Com Ajax
+
+	// $.ajax({
+	// 	dataType: "jsonp",
+	// 	url: "http://143.107.58.177:8080/bigode-dono/api/v1/mesas",
+	// 	jsonp: "$callback",
+	// 	success: showMovies
+	// });
+
+	// function showMovies(data) {
+	// 	$("#clientTemplate").tmpl(data).appendTo("#todos-pedidos");
+	// }
+
+	// (function() {
+	// 	var url = "http://143.107.58.177:8080/bigode-dono/api/v1/mesas";
+	// 	$.getJSON( url, {
+	// 		format: "json"
+	// 	}).done(function(data) {
+	// 			$("#clientTemplate").tmpl(data).appendTo("#todos-pedidos");
+	// 		});
+	// })();
+
+	$('.article').click(function(e) {
+
+		$('.article').not(this).find('.item #btn-container h2').addClass('hide');
+		$('.article').not(this).find('.item #btn-container .btn-entregue').addClass('show');
+		$('.article').not(this).find('.item #btn-container .btn-pago').addClass('show');
+
+		var current_active = $(this).hasClass('current');
+		var current_total = $(this).find('.item > #btn-container > h2').hasClass('hide');
+
+		if(!current_total) {
+			$(this).find('.item > #btn-container > h2').addClass('hide');
+		} else {
+			$(this).find('.item > #btn-container > h2').removeClass('hide');
+		}
+
+		var current_btn_e = $(this).find('.item #btn-container .btn-entregue').hasClass('show');
+		var current_btn_p = $(this).find('.item #btn-container .btn-pago').hasClass('show');
+
+		if(!current_btn_e) {
+			$(this).find('.item > #btn-container > .btn-entregue').removeClass('hide');
+			$(this).find('.item > #btn-container > .btn-entregue').addClass('show');
+		} else {
+			$(this).find('.item > #btn-container > .btn-entregue').removeClass('show');
+			$(this).find('.item > #btn-container > .btn-entregue').addClass('hide');
+		}
+
+		if(!current_btn_p) {
+			$(this).find('.item > #btn-container > .btn-pago').removeClass('hide');
+			$(this).find('.item > #btn-container > .btn-pago').addClass('show');
+		} else {
+			$(this).find('.item > #btn-container > .btn-pago').removeClass('show');
+			$(this).find('.item > #btn-container > .btn-pago').addClass('hide');
+		}
+
+		if(!current_active) {
 			$('.article').removeClass('current');
 			$('.description').hide();
 			$(this).addClass('current');
