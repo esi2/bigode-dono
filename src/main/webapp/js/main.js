@@ -15,7 +15,7 @@ $(document).ready(function(){
 						}
 					]
 					,
-					"status":"ATIVO"
+					"status":"ATIVO"	
 				},
 				{
 					"id":2,
@@ -24,6 +24,18 @@ $(document).ready(function(){
 							"id":2,
 							"nome":"Coxinha",
 							"preco":3.0,
+							"qtd":1
+						}
+					],
+					"status":"ATIVO"
+				},
+				{
+					"id":5,
+					"itens":[
+						{
+							"id":2,
+							"nome":"blay",
+							"preco":8.0,
 							"qtd":1
 						}
 					],
@@ -59,6 +71,17 @@ $(document).ready(function(){
 
 	$("#clientTemplate").tmpl(mesa).appendTo("#todos-pedidos");
 
+/*	function httpGetAsync(theUrl, callback)
+{
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.onreadystatechange = function() { 
+        if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
+            callback(xmlHttp.responseText);
+    }
+    xmlHttp.open("GET", theUrl, true); // true for asynchronous 
+    xmlHttp.send(null);
+}*/
+
 	// Com Ajax
 
 	// $.ajax({
@@ -86,6 +109,7 @@ $(document).ready(function(){
 		$('.article').not(this).find('.item #btn-container h2').addClass('hide');
 		$('.article').not(this).find('.item #btn-container .btn-entregue').addClass('show');
 		$('.article').not(this).find('.item #btn-container .btn-pago').addClass('show');
+		$('.article').not(this).find('.item #btn-container .btn-ativo').addClass('show');
 
 		var current_active = $(this).hasClass('current');
 		var current_total = $(this).find('.item > #btn-container > h2').hasClass('hide');
@@ -98,6 +122,7 @@ $(document).ready(function(){
 
 		var current_btn_e = $(this).find('.item #btn-container .btn-entregue').hasClass('show');
 		var current_btn_p = $(this).find('.item #btn-container .btn-pago').hasClass('show');
+		var current_btn_a = $(this).find('.item #btn-container .btn-ativo').hasClass('show');
 
 		if(!current_btn_e) {
 			$(this).find('.item > #btn-container > .btn-entregue').removeClass('hide');
@@ -113,6 +138,14 @@ $(document).ready(function(){
 		} else {
 			$(this).find('.item > #btn-container > .btn-pago').removeClass('show');
 			$(this).find('.item > #btn-container > .btn-pago').addClass('hide');
+		}
+
+		if(!current_btn_a) {
+			$(this).find('.item > #btn-container > .btn-ativo').removeClass('hide');
+			$(this).find('.item > #btn-container > .btn-ativo').addClass('show');
+		} else {
+			$(this).find('.item > #btn-container > .btn-ativo').removeClass('show');
+			$(this).find('.item > #btn-container > .btn-ativo').addClass('hide');
 		}
 
 		if(!current_active) {

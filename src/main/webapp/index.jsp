@@ -13,6 +13,7 @@
 		<script src="js/main.js"></script>
 
 		<script id="clientTemplate" type="text/html">
+		
 			{{each pedidos}}
 				{{if status == "ENTREGUE"}}
 					{{each itens}}
@@ -112,6 +113,7 @@
 					{{/each}}
 				{{/if}}
 			{{/each}}
+	
 		</script>
 
 	</head>
