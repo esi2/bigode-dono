@@ -3,9 +3,9 @@
 	<head>
 
 		<meta charset="utf-8">
-		<link href="CSS/bootstrap.min.css" rel="stylesheet" media="all">
+		<link href="./css/bootstrap.min.css" rel="stylesheet" media="all">
 		<link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
-		<link rel="stylesheet" href="CSS/style.css">
+		<link rel="stylesheet" href="./css/style.css">
 
 	 <!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script> -->
 		<script src="js/jquery.js"></script>
