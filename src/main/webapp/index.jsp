@@ -8,9 +8,9 @@
 		<link rel="stylesheet" href="./css/style.css">
 
 	 <!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script> -->
-		<script src="js/jquery.js"></script>
+		<script src="./js/jquery.js"></script>
 		<script type="text/javascript" src="http://ajax.microsoft.com/ajax/jquery.templates/beta1/jquery.tmpl.min.js"></script>
-		<script src="js/main.js"></script>
+		<script src="./js/main.js"></script>
 
 		<script id="clientTemplate" type="text/html">
 		
