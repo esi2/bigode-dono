@@ -123,6 +123,10 @@ p {
 	float: right;
 }
 
+.checkList{
+	background-color: lightgreen;
+}
+
 .description a {
 	color: #DE615E;
 	font-weight: bold;

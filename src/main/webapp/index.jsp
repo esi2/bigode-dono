@@ -3,9 +3,9 @@
 	<head>
 
 		<meta charset="utf-8">
-		<link href="CSS/bootstrap.min.css" rel="stylesheet">
+		<link href="css/bootstrap.min.css" rel="stylesheet" media="all">
 		<link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
-		<link rel="stylesheet" href="CSS/style.css">
+		<link rel="stylesheet" href="css/style.css">
 
 	 <!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script> -->
 		<script src="js/jquery.js"></script>
@@ -30,7 +30,14 @@
 							<div class="description row">
 								<div class="col-xs-12 container-itens">
 									<ul>
-										<li>${nome} <span class="not-bold texto-dir">${qtd} x <span class="preco">R$ ${preco}</span></span></li>
+										<li><input class="cklist" type="checkbox" name="demo" value="one" /> ${nome}
+											<span class="not-bold texto-dir"> ${qtd} x 
+												<span class="preco">R$ ${preco}</span>
+											</span>
+  										<button type="button" class="btn-danger btn-xs" aria-label="Right Align">
+											<span class="glyphicon glyphicon-remove"></span>
+										</button>
+										</li>
 										<hr>
 									</ul>
 								</div>
@@ -40,7 +47,7 @@
 										<button class="btn btn-entregue"><strong>Pago!</strong></button>
 									</div>
 									<div class="col-xs-9 menos-padd">
-										<a href="#"><strong>Minimizar o pedido</strong></a>
+										<a class="minimiza" href="#"><strong>Minimizar o pedido</strong></a>
 									</div>
 								</div>
 
@@ -62,7 +69,11 @@
 							<div class="description row">
 								<div class="col-xs-12 container-itens">
 									<ul>
-										<li>${nome} <span class="not-bold texto-dir">${qtd} x <span class="preco">R$ ${preco}</span></span></li>
+										<li><input class="cklist" type="checkbox" name="demo" value="one" /> ${nome} <span class="not-bold texto-dir">${qtd} x <span class="preco">R$ ${preco}</span></span>
+										<button type="button" class="btn-danger btn-xs" aria-label="Right Align">
+											<span class="glyphicon glyphicon-remove"></span>
+										</button>
+										</li>
 										<hr>
 									</ul>
 								</div>
@@ -72,7 +83,7 @@
 										<button class="btn btn-pago"><strong>Finalizado!</strong></button>
 									</div>
 									<div class="col-xs-9 menos-padd">
-										<a href="#"><strong>Minimizar o pedido</strong></a>
+										<a class="minimiza" href="#"><strong>Minimizar o pedido</strong></a>
 									</div>
 								</div>
 
@@ -94,7 +105,11 @@
 							<div class="description row">
 								<div class="col-xs-12 container-itens">
 									<ul>
-										<li>${nome} <span class="not-bold texto-dir">${qtd} x <span class="preco">R$ ${preco}</span></span></li>
+										<li><input class="cklist" type="checkbox" name="demo" value="one" /> ${nome} <span class="not-bold texto-dir">${qtd} x <span class="preco">R$ ${preco}</span></span>
+										<button type="button" class="btn-danger btn-xs" aria-label="Right Align">
+											<span class="glyphicon glyphicon-remove"></span>
+										</button>
+										</li>
 										<hr>
 									</ul>
 								</div>
@@ -104,7 +119,7 @@
 										<button class="btn btn-ativo"><strong>Entegue!</strong></button>
 									</div>
 									<div class="col-xs-9 menos-padd">
-										<a href="#"><strong>Minimizar o pedido</strong></a>
+										<a class="minimiza" href="#"><strong>Minimizar o pedido</strong></a>
 									</div>
 								</div>
 
