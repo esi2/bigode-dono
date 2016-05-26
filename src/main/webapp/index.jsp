@@ -30,7 +30,7 @@
 							<div class="description row">
 								<div class="col-xs-12 container-itens">
 									<ul>
-										<li><input class="cklist" type="checkbox" name="demo" value="one" /> ${nome}
+										<li class="temp"><input class="cklist" type="checkbox" name="demo" value="one" /> ${nome}
 											<span class="not-bold texto-dir"> ${qtd} x 
 												<span class="preco">R$ ${preco}</span>
 											</span>
@@ -69,7 +69,7 @@
 							<div class="description row">
 								<div class="col-xs-12 container-itens">
 									<ul>
-										<li><input class="cklist" type="checkbox" name="demo" value="one" /> ${nome} <span class="not-bold texto-dir">${qtd} x <span class="preco">R$ ${preco}</span></span>
+										<li class="temp"><input class="cklist" type="checkbox" name="demo" value="one" /> ${nome} <span class="not-bold texto-dir">${qtd} x <span class="preco">R$ ${preco}</span></span>
 										<button type="button" class="btn-danger btn-xs" aria-label="Right Align">
 											<span class="glyphicon glyphicon-remove"></span>
 										</button>
@@ -105,7 +105,7 @@
 							<div class="description row">
 								<div class="col-xs-12 container-itens">
 									<ul>
-										<li><input class="cklist" type="checkbox" name="demo" value="one" /> ${nome} <span class="not-bold texto-dir">${qtd} x <span class="preco">R$ ${preco}</span></span>
+										<li class="temp"><input class="cklist" type="checkbox" name="demo" value="one" /> ${nome} <span class="not-bold texto-dir">${qtd} x <span class="preco">R$ ${preco}</span></span>
 										<button type="button" class="btn-danger btn-xs" aria-label="Right Align">
 											<span class="glyphicon glyphicon-remove"></span>
 										</button>
@@ -139,6 +139,19 @@
 		</div>
 
 		<div class="container" id="todos-pedidos"></div>
+		
+		<script>
+		function displayVals() {
+		    $(document).ready(function(){
+
+		    var oia = $('.article:nth-child(1)').find('.preco');
+			console.log(oia);
+			});
+		//	console.log(oia.val());
+		} 
+		//$( "select" ).change( displayVals );
+		displayVals();
+		</script>
 
 	</body>
 </html>
