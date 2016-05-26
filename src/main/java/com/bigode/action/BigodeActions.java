@@ -83,14 +83,16 @@ public class BigodeActions {
             }
 
             //fechando ultima mesa
-            Pedido pedidoFinal = new Pedido(indicePedido, indiceMesa, indiceSessao, itemPedidoList, statusPedido);
-            response.add(pedidoFinal);
-            itemPedidoList.clear();
+            if(itemPedidoList.size() > 0) {
+                Pedido pedidoFinal = new Pedido(indicePedido, indiceMesa, indiceSessao, itemPedidoList, statusPedido);
+                response.add(pedidoFinal);
+                itemPedidoList.clear();
 
-            indicePedido = -1;
-            indiceMesa = -1;
-            indiceSessao = -1;
-            statusPedido = "";
+                indicePedido = -1;
+                indiceMesa = -1;
+                indiceSessao = -1;
+                statusPedido = "";
+            }
         } catch (Exception e) {
             System.out.println("[Erro] " + e.toString());
         } finally {
