@@ -21,21 +21,9 @@ public class BigodeApi {
     private BigodeActions bigodeActions = null;
 
     @RequestMapping(path = "/mesas", method = RequestMethod.GET)
-    public List<Mesa> getListaPedidos() throws SQLException{
-        //TODO: Retornar lista de pedidos a serem entregues
+    public List<Pedido> getListaPedidos() throws SQLException{
+        //TODO: Implementar objetos para sessão e update no objeto mesa (após isso, inserir ambos nos pedidos)
         return BigodeActions.getListaPedidos();
-    }
-
-    @RequestMapping(path = "/mesas/test", method = RequestMethod.GET)
-    public long checkMethod() throws SQLException{
-        return BigodeActions.checkQuery();
-    }
-
-    @RequestMapping(path = "/mesas/fake/{numeroMesa}", method = RequestMethod.GET)
-    public void criaMesaFake(
-            @PathVariable Long numeroMesa
-    ) throws SQLException {
-        BigodeActions.criaPedido(numeroMesa);
     }
 
     @RequestMapping(path = "/mesas/{numeroMesa}/pedidos", method = RequestMethod.GET)
@@ -46,26 +34,23 @@ public class BigodeApi {
         return BigodeActions.getListaPedidosMesa(numeroMesa);
     }
 
-    @RequestMapping(path = "/mesas/{numeroMesa}/pedidos/{numeroPedido}", method = RequestMethod.GET)
+    @RequestMapping(path = "/pedidos/{numeroPedido}", method = RequestMethod.GET)
     public Pedido getDetalhesPedido(
-            @PathVariable Long numeroMesa,
             @PathVariable Long numeroPedido
     ){
         //TODO: Retornar detalhes de um pedido especifico
-        return BigodeActions.getDetalhesPedido(numeroMesa, numeroPedido);
+        return BigodeActions.getDetalhesPedido(numeroPedido);
     }
 
-    @RequestMapping(path = "/mesas/{numeroMesa}/pedidos/{numeroPedido}/entregue", method = RequestMethod.GET)
+    @RequestMapping(path = "/pedidos/{numeroPedido}/entregue", method = RequestMethod.GET)
     public void setPedidoEntregue(
-            @PathVariable Long numeroMesa,
             @PathVariable Long numeroPedido
     ) throws SQLException {
         BigodeActions.setPedidoEntregue(numeroPedido);
     }
 
-    @RequestMapping(path = "/mesas/{numeroMesa}/pedidos/{numeroPedido}/pago", method = RequestMethod.GET)
+    @RequestMapping(path = "/pedidos/{numeroPedido}/pago", method = RequestMethod.GET)
     public void setPedidoPago(
-            @PathVariable Long numeroMesa,
             @PathVariable Long numeroPedido
     ) throws SQLException {
         BigodeActions.setPedidoPago(numeroPedido);

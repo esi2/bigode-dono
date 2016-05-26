@@ -7,19 +7,27 @@ import java.util.List;
 
 @JsonFormat(shape = JsonFormat.Shape.OBJECT)
 public class Pedido {
-    @JsonProperty private long id;
+    @JsonProperty private long idPedido;
+    @JsonProperty private long idMesa;
+    @JsonProperty private long idSessao;
     @JsonProperty private List<ItemPedido> itens;
     @JsonProperty private String status;
 
     public Pedido(){}
 
-    public Pedido(Long idPedido, List<ItemPedido> itens, String status){
-        this.id = idPedido;
+    public Pedido(Long idPedido, Long idMesa, Long idSessao, List<ItemPedido> itens, String status){
+        this.idPedido = idPedido;
+        this.idMesa = idMesa;
+        this.idSessao = idSessao;
         this.itens = itens;
         this.status = status;
     }
 
-    public long getId() {return id;}
+    public long getIdPedido() { return idPedido; }
+
+    public long getIdMesa() { return idMesa; }
+
+    public long getIdSessao() { return idSessao; }
 
     public String getStatus() {return status;}
 
@@ -48,8 +56,5 @@ public class Pedido {
         public double getPreco() {return preco;}
 
         public long getQtd() {return qtd;}
-
-
-
     }
 }

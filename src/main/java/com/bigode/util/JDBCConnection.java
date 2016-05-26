@@ -5,7 +5,8 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class JDBCConnection {
-    private final String connUrl = "jdbc:mysql://localhost:3306/BIGODE";
+    private final String connUrl = "jdbc:mysql://localhost:3306/BIGODE_TESTE"; //sandbox environment
+    //private final String connUrl = "jdbc:mysql://localhost:3306/BIGODE_PROD"; //prod environment
     private final String username = "root";
     private final String password = "EACHesi2016!";
     private static JDBCConnection jdbcInstance = null;
