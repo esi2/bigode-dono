@@ -3,6 +3,7 @@ package main.java.com.bigode.model;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @JsonFormat(shape = JsonFormat.Shape.OBJECT)
@@ -19,7 +20,7 @@ public class Pedido {
         this.idPedido = idPedido;
         this.idMesa = idMesa;
         this.idSessao = idSessao;
-        this.itens = itens;
+        this.itens = new ArrayList(itens);
         this.status = status;
     }
 
