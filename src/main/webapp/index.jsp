@@ -13,14 +13,12 @@
 		<script src="./js/main.js"></script>
 
 		<script id="clientTemplate" type="text/html">
-		
-			{{each pedidos}}
-				{{if status == "ENTREGUE"}}
-					{{each itens}}
+
+					{{if status == "ENTREGUE"}}
 						<div class="article entregue-master-class">
 							<div class="item row">
 								<div class="col-xs-9">
-									<p class="source"><strong>A mesa ${numeroMesa} teve o pedido entregue!</strong></p>
+									<p class="source"><strong>A mesa ${idMesa} teve o pedido entregue!</strong></p>
 								</div>
 								<div class="col-xs-3" id="btn-container">
 									<button class="btn btn-entregue show"><strong>Pago!</strong></button>
@@ -30,6 +28,7 @@
 							<div class="description row">
 								<div class="col-xs-12 container-itens">
 									<ul>
+									{{each itens}}
 										<li class="temp"><input class="cklist" type="checkbox" name="demo" value="one" /> ${nome}
 											<span class="not-bold texto-dir"> ${qtd} x 
 												<span class="preco">R$ ${preco}</span>
@@ -39,6 +38,7 @@
 										</button>
 										</li>
 										<hr>
+									{{/each}}
 									</ul>
 								</div>
 
@@ -53,13 +53,11 @@
 
 							</div>
 						</div>
-					{{/each}}
-				{{else status == "PAGO"}}
-					{{each itens}}
+					{{else status == "PAGO"}}
 						<div class="article pago-master-class">
 							<div class="item row">
 								<div class="col-xs-9">
-									<p class="source"><strong>A mesa ${numeroMesa} pediu para fechar a conta!</strong></p>
+									<p class="source"><strong>A mesa ${idMesa} pediu para fechar a conta!</strong></p>
 								</div>
 								<div class="col-xs-3" id="btn-container">
 									<button class="btn btn-pago show"><strong>Finalizado!</strong></button>
@@ -69,12 +67,14 @@
 							<div class="description row">
 								<div class="col-xs-12 container-itens">
 									<ul>
+									{{each itens}}
 										<li class="temp"><input class="cklist" type="checkbox" name="demo" value="one" /> ${nome} <span class="not-bold texto-dir">${qtd} x <span class="preco">R$ ${preco}</span></span>
 										<button type="button" class="btn-danger btn-xs" aria-label="Right Align">
 											<span class="glyphicon glyphicon-remove"></span>
 										</button>
 										</li>
 										<hr>
+									{{/each}}
 									</ul>
 								</div>
 
@@ -89,13 +89,11 @@
 
 							</div>
 						</div>
-					{{/each}}
-				{{else}}
-					{{each itens}}
+					{{else}}
 						<div class="article ativo-master-class">
 							<div class="item row">
 								<div class="col-xs-9">
-									<p class="source"><strong>A mesa ${numeroMesa} fez um pedido!</strong></p>
+									<p class="source"><strong>A mesa ${idMesa} fez um pedido!</strong></p>
 								</div>
 								<div class="col-xs-3" id="btn-container">
 									<button class="btn btn-ativo show"><strong>Entegue!</strong></button>
@@ -105,12 +103,14 @@
 							<div class="description row">
 								<div class="col-xs-12 container-itens">
 									<ul>
+									{{each itens}}
 										<li class="temp"><input class="cklist" type="checkbox" name="demo" value="one" /> ${nome} <span class="not-bold texto-dir">${qtd} x <span class="preco">R$ ${preco}</span></span>
 										<button type="button" class="btn-danger btn-xs" aria-label="Right Align">
 											<span class="glyphicon glyphicon-remove"></span>
 										</button>
 										</li>
 										<hr>
+									{{/each}}
 									</ul>
 								</div>
 
@@ -125,10 +125,7 @@
 
 							</div>
 						</div>
-					{{/each}}
-				{{/if}}
-			{{/each}}
-	
+					{{/if}}		
 		</script>
 
 	</head>
@@ -145,7 +142,7 @@
 		    $(document).ready(function(){
 
 		    var oia = $('.article:nth-child(1)').find('.preco');
-			console.log(oia);
+		//	console.log(oia);
 			});
 		//	console.log(oia.val());
 		} 

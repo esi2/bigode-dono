@@ -1,109 +1,65 @@
 $(document).ready(function(){
 
-	var mesa =	[
-		{
-			"numeroMesa":1,
-			"pedidos":[
-				{
-					"id":1,
-					"itens":[
-						{
-							"id":1,
-							"nome":"Cerveja",
-							"preco":5.0,
-							"qtd":1
-						}
-					],
+	var mesa =
 
-					"status":"ATIVO"	
+	[
+	{
+		"idPedido":2,
+		"idMesa":2,
+		"idSessao":2,
+			"itens":
+			[
+				{
+				"id":1,
+				"nome":"Cerveja",
+				"preco":3.51,
+				"qtd":5
 				},
 				{
-					"id":2,
-					"itens":[
-						{
-							"id":2,
-							"nome":"Coxinha",
-							"preco":3.0,
-							"qtd":1
-						}
-					],
-					"status":"ATIVO"
-				},
-				{
-					"id":5,
-					"itens":[
-						{
-							"id":2,
-							"nome":"blay",
-							"preco":8.0,
-							"qtd":1
-						}
-					],
-					"status":"ATIVO"
-				},
-				{
-					"id":3,
-					"itens":[
-						{
-							"id":3,
-							"nome":"Cerveja",
-							"preco":5.0,
-							"qtd":1
-						}
-					],
-					"status":"ENTREGUE"
-				},
-				{
-					"id":4,
-					"itens":[
-						{
-							"id":4,
-							"nome":"Coxinha",
-							"preco":3.0,
-							"qtd":1
-						}
-					],
-					"status":"PAGO"
+				"id":2,
+				"nome":"Coxinha",
+				"preco":1.52,
+				"qtd":6
 				}
-			]
-		}
-	];
+			],
+					"status":"FINALIZADO"
+	},
+
+	{
+		"idPedido":1,
+		"idMesa":1,
+		"idSessao":1,
+			"itens":
+			[
+				{
+				"id":2,
+				"nome":"Coxinha",
+				"preco":1.52,
+				"qtd":3
+				},
+				{
+				"id":1,
+				"nome":"Cerveja",
+				"preco":3.51,
+				"qtd":2
+				}
+			],
+				   "status":"ENTREGUE"
+	}
+];
 
 	$("#clientTemplate").tmpl(mesa).appendTo("#todos-pedidos");
 
-/*	function httpGetAsync(theUrl, callback)
-{
-    var xmlHttp = new XMLHttpRequest();
-    xmlHttp.onreadystatechange = function() { 
-        if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
-            callback(xmlHttp.responseText);
-    }
-    xmlHttp.open("GET", theUrl, true); // true for asynchronous 
-    xmlHttp.send(null);
-}*/
 
-	// Com Ajax
-
-	// $.ajax({
-	// 	dataType: "jsonp",
-	// 	url: "http://143.107.58.177:8080/bigode-dono/api/v1/mesas",
-	// 	jsonp: "$callback",
-	// 	success: showMovies
-	// });
-
-	// function showMovies(data) {
-	// 	$("#clientTemplate").tmpl(data).appendTo("#todos-pedidos");
-	// }
-
-	// (function() {
-	// 	var url = "http://143.107.58.177:8080/bigode-dono/api/v1/mesas";
-	// 	$.getJSON( url, {
-	// 		format: "json"
-	// 	}).done(function(data) {
-	// 			$("#clientTemplate").tmpl(data).appendTo("#todos-pedidos");
-	// 		});
-	// })();
-
+/*	 (function() {
+	 	var url = "http://143.107.58.177:8080/bigode-dono/api/v1/mesas.json";
+	 	$.getJSON( url, {
+	 		format: "json"
+	 	}).done(function(data) {
+				$("#clientTemplate").tmpl(data).appendTo("#todos-pedidos");
+	 		});
+	 })();
+*/
 
 	$('.item').click(function(e) {
 
@@ -263,6 +219,7 @@ $(document).ready(function(){
 			prevArticle.children('.description').show("slow");
 		}
 	});
+});
 
 	// Largura do logo principal
 	// var ew = $(".igBigode").width();
@@ -271,4 +228,3 @@ $(document).ready(function(){
 	// $(".igBigode").css("height", eh);
 	// END
 
-});
