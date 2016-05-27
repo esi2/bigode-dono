@@ -104,6 +104,7 @@ $(document).ready(function(){
 	// 		});
 	// })();
 
+
 	$('.item').click(function(e) {
 
 		var artcur = $(this).parent();
@@ -182,13 +183,31 @@ $(document).ready(function(){
 	});
 
 	$('input').click(function(){
-		var ckList = $(this).closest('li');
+			
+		var ckList = $(this).closest('li');//pega o Li clicado
+		var paicheck = ckList.parent();//pega a ul pai 
+		var primeiroFilho = paicheck.find('li:first-child');//pega o primeiro filho da ul
+		var segundoFilho = primeiroFilho.siblings().hasClass('temp'); //checa se tem proximo
+
 		var checa = ckList.hasClass('checkList');
 		if(!checa){
 			ckList.addClass('checkList');
 		}
 		else{
 			ckList.removeClass('checkList');
+		}
+
+		var checaFilho = primeiroFilho.hasClass("checkList");
+		var checaTudo = primeiroFilho.nextAll().hasClass("checkList");
+
+		if((checaTudo == true && checaFilho == true) || (checaFilho == true && segundoFilho == false)){
+		 var confirma = confirm("Todos os itens do pedido foram selecionados. Deseja baixar o pedido?");
+		 	if(confirma == true){
+		 		var pai = $(this).closest('.article');
+		 		pai.fadeOut("fast", function(){
+					pai.remove();
+				});
+		 	}
 		}
 	});
 
@@ -202,8 +221,11 @@ $(document).ready(function(){
 	});
 
 	$('.btn-danger').click(function(){
+		var corfirmacao = confirm("Tem Certeza que deseja excluir o item?");
+		if(corfirmacao == true){
 		var botaozin = $(this).closest('li');
 		botaozin.remove();
+		}
 	});
 
 	$(document).keypress(function(event) {
