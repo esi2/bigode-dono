@@ -23,15 +23,7 @@ public class Pedido {
         this.idSessao = idSessao;
         this.itens = new ArrayList(itens);
         this.status = status;
-        this.total = getTotal(itens);
-    }
-
-    public long getTotal(List<ItemPedido> itens){
-        long total = 0;
-        for (int i = 0; i < itens.length ; i++) {
-            total += (itens.get(i).preco * itens.get(i).qtd);
-        }
-        return total;
+        this.total = total;
     }
 
     public long getIdPedido() { return idPedido; }
@@ -45,6 +37,8 @@ public class Pedido {
     public List<ItemPedido> getItens() {
         return itens;
     }
+
+    public String getTotal() {return total;}
 
     @JsonFormat(shape = JsonFormat.Shape.OBJECT)
     public static class ItemPedido {

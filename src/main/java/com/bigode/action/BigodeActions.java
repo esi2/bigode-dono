@@ -26,6 +26,7 @@ public class BigodeActions {
         long indiceMesa = -1;
         long indiceSessao = -1;
         String statusPedido = "";
+        long total = 0;
 
         List<Pedido.ItemPedido> itemPedidoList = new ArrayList<>();
 
@@ -33,7 +34,8 @@ public class BigodeActions {
             conn = JDBCConnection.getJdbcInstance().connect();
 
             String query =
-                    "SELECT PEDIDO.ID_PEDIDO, PEDIDO.STATUS_PEDIDO, MESA.ID_BAR, MESA.ID_MESA, " +
+                    "SELECT (PRODUTO.PRECO_PRODUTO * PRODUTO_PEDIDO.QUANTIDADE) AS TOTAL,"+
+                    "PEDIDO.ID_PEDIDO, PEDIDO.STATUS_PEDIDO, MESA.ID_BAR, MESA.ID_MESA, " +
                     "MESA.NUM_MESA, MESA.STATUS_MESA, SESSAO.ID_SESSAO, SESSAO.STATUS_SESSAO, " +
                     "PRODUTO_PEDIDO.ID_PRODUTO, PRODUTO_PEDIDO.QUANTIDADE, PRODUTO.NOME_PRODUTO, " +
                     "PRODUTO.PRECO_PRODUTO, PRODUTO.FOTO_PRODUTO FROM PEDIDO " +
@@ -63,14 +65,11 @@ public class BigodeActions {
                 }
 
                 if(indicePedido != numPedidoAtual && itemPedidoList.size() > 0) {
-                    Pedido pedido = new Pedido(indicePedido, indiceMesa, indiceSessao, itemPedidoList, statusPedido);
+                    Pedido pedido = new Pedido(indicePedido, indiceMesa, indiceSessao, itemPedidoList, statusPedido, total);
                     response.add(pedido);
+                    total = 0;
                     itemPedidoList.clear();
 
-                    indicePedido = numPedidoAtual;
-                    indiceMesa = numMesaAtual;
-                    indiceSessao = numSessaoAtual;
-                    statusPedido = statusPedidoAtual;
                 }
 
                 Pedido.ItemPedido itemPedido =
@@ -80,11 +79,13 @@ public class BigodeActions {
                                 Double.parseDouble(resultSet.getString("PRECO_PRODUTO")),
                                 Long.parseLong(resultSet.getString("QUANTIDADE")));
                 itemPedidoList.add(itemPedido);
+                total += Long.parseLong(resultSet.getString("TOTAL")));
+
             }
 
             //fechando ultima mesa
             if(itemPedidoList.size() > 0) {
-                Pedido pedidoFinal = new Pedido(indicePedido, indiceMesa, indiceSessao, itemPedidoList, statusPedido);
+                Pedido pedidoFinal = new Pedido(indicePedido, indiceMesa, indiceSessao, itemPedidoList, statusPedido, total);
                 response.add(pedidoFinal);
                 itemPedidoList.clear();
 
@@ -92,6 +93,7 @@ public class BigodeActions {
                 indiceMesa = -1;
                 indiceSessao = -1;
                 statusPedido = "";
+                total = 0;
             }
         } catch (Exception e) {
             System.out.println("[Erro] " + e.toString());
