@@ -76,14 +76,11 @@ $(document).ready(function(){
 	 	$.getJSON( url, {
 	 		format: "json"
 	 	}).done(function(data) {
-	 			console.log('entrei pra pegar');
-	 			console.log(data);
+	 			//console.log('entrei pra pegar');
+	 			//console.log(data);
 				$("#clientTemplate").tmpl(data).appendTo("#todos-pedidos");
-	 		});
-	 })();
-
-
-	$('.item').click(function(e) {
+	 			
+	 	$('.item').click(function(e) {
 
 		var artcur = $(this).parent();
 		$('.article').not(artcur).find('.item #btn-container h2').addClass('hide');
@@ -241,6 +238,9 @@ $(document).ready(function(){
 			prevArticle.children('.description').show("slow");
 		}
 	});
+
+	 		});
+	 })();	
 });
 
 	// Largura do logo principal
