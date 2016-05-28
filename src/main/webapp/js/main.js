@@ -1,6 +1,6 @@
 $(document).ready(function(){
 
-	var mesa =
+/*	var mesa =
 
 	[
 	{
@@ -48,7 +48,27 @@ $(document).ready(function(){
 	}
 ];
 
-	$("#clientTemplate").tmpl(mesa).appendTo("#todos-pedidos");
+	$("#clientTemplate").tmpl(mesa).appendTo("#todos-pedidos");*/
+
+	function httpGetAsync(theUrl){
+    
+    var xmlHttp = new XMLHttpRequest();
+    
+    xmlHttp.onreadystatechange = function() { 
+        if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
+            callback(xmlHttp.responseText);
+    }
+
+    xmlHttp.open("GET", theUrl, true); // true for asynchronous 
+    xmlHttp.send(null);
+	}
+
+
+	 function callback(data) {
+	 	$("#clientTemplate").tmpl(data).appendTo("#todos-pedidos");
+	 }
+
+	httpGetAsync('http://143.107.58.177:8080/bigode-dono/api/v1/mesas');
 
 
 /*	 (function() {
