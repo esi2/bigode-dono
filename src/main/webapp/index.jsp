@@ -22,7 +22,7 @@
 								</div>
 								<div class="col-xs-3" id="btn-container">
 									<button class="btn btn-entregue show"><strong>Pago!</strong></button>
-									<h2 class="hide">Total: <span class="preco fonte2">R$ 51,00</span></h2>
+									<h2 class="hide">Total: <span class="preco fonte2">{{= total}}</span></h2>
 								</div>
 							</div>
 							<div class="description row">
@@ -62,7 +62,7 @@
 								</div>
 								<div class="col-xs-3" id="btn-container">
 									<button class="btn btn-pago show"><strong>Finalizado!</strong></button>
-									<h2 class="hide">Total: <span class="preco fonte2">R$ 51,00</span></h2>
+									<h2 class="hide">Total: <span class="preco fonte2">{{= total}}</span></h2>
 								</div>
 							</div>
 							<div class="description row">
@@ -102,7 +102,7 @@
 								</div>
 								<div class="col-xs-3" id="btn-container">
 									<button class="btn btn-ativo show"><strong>Entegue!</strong></button>
-									<h2 class="hide">Total: <span class="preco fonte2">R$ 51,00</span></h2>
+									<h2 class="hide">Total: <span class="preco fonte2">{{= total}}</span></h2>
 								</div>
 							</div>
 							<div class="description row">

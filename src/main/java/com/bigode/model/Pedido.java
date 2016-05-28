@@ -13,15 +13,25 @@ public class Pedido {
     @JsonProperty private long idSessao;
     @JsonProperty private List<ItemPedido> itens;
     @JsonProperty private String status;
+    @JsonProperty private long total;
 
     public Pedido(){}
 
-    public Pedido(Long idPedido, Long idMesa, Long idSessao, List<ItemPedido> itens, String status){
+    public Pedido(Long idPedido, Long idMesa, Long idSessao, List<ItemPedido> itens, String status, long total){
         this.idPedido = idPedido;
         this.idMesa = idMesa;
         this.idSessao = idSessao;
         this.itens = new ArrayList(itens);
         this.status = status;
+        this.total = getTotal(itens);
+    }
+
+    public long getTotal(List<ItemPedido> itens){
+        long total = 0;
+        for (int i = 0; i < itens.length ; i++) {
+            total += (itens.get(i).preco * itens.get(i).qtd);
+        }
+        return total;
     }
 
     public long getIdPedido() { return idPedido; }
