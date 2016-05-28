@@ -34,7 +34,7 @@ public class BigodeActions {
             conn = JDBCConnection.getJdbcInstance().connect();
 
             String query =
-                    "SELECT (PRODUTO.PRECO_PRODUTO * PRODUTO_PEDIDO.QUANTIDADE) AS TOTAL,"+
+                    "SELECT (PRODUTO.PRECO_PRODUTO * PRODUTO_PEDIDO.QUANTIDADE) AS TOTAL, "+
                     "PEDIDO.ID_PEDIDO, PEDIDO.STATUS_PEDIDO, MESA.ID_BAR, MESA.ID_MESA, " +
                     "MESA.NUM_MESA, MESA.STATUS_MESA, SESSAO.ID_SESSAO, SESSAO.STATUS_SESSAO, " +
                     "PRODUTO_PEDIDO.ID_PRODUTO, PRODUTO_PEDIDO.QUANTIDADE, PRODUTO.NOME_PRODUTO, " +
