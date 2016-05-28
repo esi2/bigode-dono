@@ -145,6 +145,7 @@ $(document).ready(function(){
 			artcur.removeClass('current');
 			artcur.children('.description').hide("slow");
 		}
+		console.log(artcur.find('.preco').val());
 	
 	});
 
