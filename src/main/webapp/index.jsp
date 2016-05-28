@@ -151,7 +151,7 @@
 		    $(document).ready(function(){
 
 		    var oia = $('.article:nth-child(1)').find('.preco');
-		//	console.log(oia);
+			console.log(oia);
 			});
 		//	console.log(oia.val());
 		} 
