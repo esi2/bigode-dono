@@ -50,7 +50,7 @@ $(document).ready(function(){
 
 	$("#clientTemplate").tmpl(mesa).appendTo("#todos-pedidos");*/
 
-	function httpGetAsync(theUrl){
+/*	function httpGetAsync(theUrl){
     
     var xmlHttp = new XMLHttpRequest();
     
@@ -68,18 +68,19 @@ $(document).ready(function(){
 	 	$("#clientTemplate").tmpl(data).appendTo("#todos-pedidos");
 	 }
 
-	httpGetAsync('http://143.107.58.177:8080/bigode-dono/api/v1/mesas');
+	httpGetAsync('http://143.107.58.177:8080/bigode-dono/api/v1/mesas');*/
 
 
-/*	 (function() {
-	 	var url = "http://143.107.58.177:8080/bigode-dono/api/v1/mesas.json";
+	 (function() {
+	 	var url = "http://143.107.58.177:8080/bigode-dono/api/v1/mesas";
 	 	$.getJSON( url, {
 	 		format: "json"
 	 	}).done(function(data) {
+	 			console.log('entrei pra pegar');
 				$("#clientTemplate").tmpl(data).appendTo("#todos-pedidos");
 	 		});
 	 })();
-*/
+
 
 	$('.item').click(function(e) {
 
