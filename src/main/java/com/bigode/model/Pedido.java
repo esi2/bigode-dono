@@ -38,7 +38,7 @@ public class Pedido {
         return itens;
     }
 
-    public String getTotal() {return total;}
+    public long getTotal() {return total;}
 
     @JsonFormat(shape = JsonFormat.Shape.OBJECT)
     public static class ItemPedido {
