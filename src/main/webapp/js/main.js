@@ -77,6 +77,7 @@ $(document).ready(function(){
 	 		format: "json"
 	 	}).done(function(data) {
 	 			console.log('entrei pra pegar');
+	 			console.log(data);
 				$("#clientTemplate").tmpl(data).appendTo("#todos-pedidos");
 	 		});
 	 })();
