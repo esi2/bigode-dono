@@ -70,6 +70,11 @@ public class BigodeActions {
                     total = 0;
                     itemPedidoList.clear();
 
+                    indicePedido = numPedidoAtual;
+                    indiceMesa = numMesaAtual;
+                    indiceSessao = numSessaoAtual;
+                    statusPedido = statusPedidoAtual;
+
                 }
 
                 Pedido.ItemPedido itemPedido =
