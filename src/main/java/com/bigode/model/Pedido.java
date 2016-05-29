@@ -13,11 +13,11 @@ public class Pedido {
     @JsonProperty private long idSessao;
     @JsonProperty private List<ItemPedido> itens;
     @JsonProperty private String status;
-    @JsonProperty private long total;
+    @JsonProperty private double total;
 
     public Pedido(){}
 
-    public Pedido(Long idPedido, Long idMesa, Long idSessao, List<ItemPedido> itens, String status, long total){
+    public Pedido(Long idPedido, Long idMesa, Long idSessao, List<ItemPedido> itens, String status, Double total){
         this.idPedido = idPedido;
         this.idMesa = idMesa;
         this.idSessao = idSessao;
@@ -38,7 +38,7 @@ public class Pedido {
         return itens;
     }
 
-    public long getTotal() {return total;}
+    public double getTotal() {return total;}
 
     @JsonFormat(shape = JsonFormat.Shape.OBJECT)
     public static class ItemPedido {

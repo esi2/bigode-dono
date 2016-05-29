@@ -26,7 +26,7 @@ public class BigodeActions {
         long indiceMesa = -1;
         long indiceSessao = -1;
         String statusPedido = "";
-        long total = 0;
+        double total = 0;
 
         List<Pedido.ItemPedido> itemPedidoList = new ArrayList<>();
 
@@ -84,7 +84,7 @@ public class BigodeActions {
                                 Double.parseDouble(resultSet.getString("PRECO_PRODUTO")),
                                 Long.parseLong(resultSet.getString("QUANTIDADE")));
                 itemPedidoList.add(itemPedido);
-                total += Long.parseLong(resultSet.getString("TOTAL"));
+                total += Double.parseDouble(resultSet.getString("TOTAL"));
 
             }
 
