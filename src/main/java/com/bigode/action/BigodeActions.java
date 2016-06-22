@@ -29,7 +29,7 @@ public class BigodeActions {
         String statusPedido = "";
         double calcTotal = 0;
         String total = "";
-        DecimalFormat df = new DecimalFormat("##,##00.00");
+        DecimalFormat df = new DecimalFormat("R$ #,##00.00");
 
         List<Pedido.ItemPedido> itemPedidoList = new ArrayList<>();
 
@@ -68,9 +68,8 @@ public class BigodeActions {
                 }
 
                 if(indicePedido != numPedidoAtual && itemPedidoList.size() > 0) {
-                    total = "R$ " + df.format(calcTotal);
+                    total = df.format(calcTotal);
                     Pedido pedido = new Pedido(indicePedido, indiceMesa, indiceSessao, itemPedidoList, statusPedido, total);
-                    System.out.println("Content Test: " + total);
                     response.add(pedido);
                     calcTotal = 0;
                     total = "";
@@ -96,8 +95,7 @@ public class BigodeActions {
 
             //fechando ultima mesa
             if(itemPedidoList.size() > 0) {
-                total = "R$ " + df.format(calcTotal);
-                System.out.println("Content Test: " + total);
+                total = df.format(calcTotal);
                 Pedido pedidoFinal = new Pedido(indicePedido, indiceMesa, indiceSessao, itemPedidoList, statusPedido, total);
                 response.add(pedidoFinal);
                 itemPedidoList.clear();
