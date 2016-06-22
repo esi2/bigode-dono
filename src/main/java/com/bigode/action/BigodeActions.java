@@ -12,6 +12,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.text.DecimalFormat;   
 
 @Component
 public class BigodeActions {
@@ -27,6 +28,8 @@ public class BigodeActions {
         long indiceSessao = -1;
         String statusPedido = "";
         double total = 0;
+        String totalFinal = "";
+        DecimalFormat df = new DecimalFormat("##,##00.00");
 
         List<Pedido.ItemPedido> itemPedidoList = new ArrayList<>();
 
@@ -65,9 +68,11 @@ public class BigodeActions {
                 }
 
                 if(indicePedido != numPedidoAtual && itemPedidoList.size() > 0) {
-                    Pedido pedido = new Pedido(indicePedido, indiceMesa, indiceSessao, itemPedidoList, statusPedido, total);
+                    totalFinal = "R$ " + df.format(total);
+                    Pedido pedido = new Pedido(indicePedido, indiceMesa, indiceSessao, itemPedidoList, statusPedido, totalFinal);
                     response.add(pedido);
                     total = 0;
+                    totalFinal = "";
                     itemPedidoList.clear();
 
                     indicePedido = numPedidoAtual;
@@ -90,7 +95,8 @@ public class BigodeActions {
 
             //fechando ultima mesa
             if(itemPedidoList.size() > 0) {
-                Pedido pedidoFinal = new Pedido(indicePedido, indiceMesa, indiceSessao, itemPedidoList, statusPedido, total);
+                totalFinal = df.format(total);
+                Pedido pedidoFinal = new Pedido(indicePedido, indiceMesa, indiceSessao, itemPedidoList, statusPedido, totalFinal);
                 response.add(pedidoFinal);
                 itemPedidoList.clear();
 
@@ -99,6 +105,7 @@ public class BigodeActions {
                 indiceSessao = -1;
                 statusPedido = "";
                 total = 0;
+                totalFinal = "";
             }
         } catch (Exception e) {
             System.out.println("[Erro] " + e.toString());
