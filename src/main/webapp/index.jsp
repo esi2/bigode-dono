@@ -101,7 +101,7 @@
 									<p class="source"><strong>A mesa {{= idMesa}} fez um pedido!</strong></p>
 								</div>
 								<div class="col-xs-3" id="btn-container">
-									<button class="btn btn-ativo show"><strong>Entegue!</strong></button>
+									<button class="btn btn-ativo show"><strong>Entregue!</strong></button>
 									<h2 class="hide">Total: <span class="preco fonte2">{{= total}}</span></h2>
 								</div>
 							</div>
@@ -125,7 +125,7 @@
 
 								<div class="row">
 									<div class="col-xs-3 menos-padd">
-										<button class="btn btn-ativo"><strong>Entegue!</strong></button>
+										<button class="btn btn-ativo"><strong>Entregue!</strong></button>
 									</div>
 									<div class="col-xs-9 menos-padd">
 										<a class="minimiza" href="#"><strong>Minimizar o pedido</strong></a>
