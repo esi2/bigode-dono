@@ -80,7 +80,7 @@ $(document).ready(function(){
 	 			//console.log(data);
 				$("#clientTemplate").tmpl(data).appendTo("#todos-pedidos");
 	 			
-	 	$('.item').click(function(e) {
+	 	$('.item').click(function(e){
 
 		var artcur = $(this).parent();
 		$('.article').not(artcur).find('.item #btn-container h2').addClass('hide');
