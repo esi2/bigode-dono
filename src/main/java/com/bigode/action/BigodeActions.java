@@ -29,7 +29,7 @@ public class BigodeActions {
         String statusPedido = "";
         double calcTotal = 0;
         String total = "";
-        DecimalFormat df = new DecimalFormat("R$ #,##00.00");
+        DecimalFormat df = new DecimalFormat("R$ #.00");
 
         List<Pedido.ItemPedido> itemPedidoList = new ArrayList<>();
 
@@ -82,11 +82,12 @@ public class BigodeActions {
 
                 }
 
+
                 Pedido.ItemPedido itemPedido =
                         new Pedido.ItemPedido(
                                 Long.parseLong(resultSet.getString("ID_PRODUTO")),
                                 resultSet.getString("NOME_PRODUTO"),
-                                Double.parseDouble(resultSet.getString("PRECO_PRODUTO")),
+                                df.format(Double.parseDouble(resultSet.getString("PRECO_PRODUTO"))),
                                 Long.parseLong(resultSet.getString("QUANTIDADE")));
                 itemPedidoList.add(itemPedido);
                 calcTotal += Double.parseDouble(resultSet.getString("TOTAL"));
