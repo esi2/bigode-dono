@@ -27,8 +27,8 @@ public class BigodeActions {
         long indiceMesa = -1;
         long indiceSessao = -1;
         String statusPedido = "";
-        double total = 0;
-        String totalFinal = "";
+        double calcTotal = 0;
+        String total = "";
         DecimalFormat df = new DecimalFormat("##,##00.00");
 
         List<Pedido.ItemPedido> itemPedidoList = new ArrayList<>();
@@ -68,12 +68,12 @@ public class BigodeActions {
                 }
 
                 if(indicePedido != numPedidoAtual && itemPedidoList.size() > 0) {
-                    totalFinal = "R$ " + df.format(total);
-                    Pedido pedido = new Pedido(indicePedido, indiceMesa, indiceSessao, itemPedidoList, statusPedido, totalFinal);
-                    System.out.println("Content Test: " + totalFinal);
+                    total = "R$ " + df.format(calcTotal);
+                    Pedido pedido = new Pedido(indicePedido, indiceMesa, indiceSessao, itemPedidoList, statusPedido, total);
+                    System.out.println("Content Test: " + total);
                     response.add(pedido);
-                    total = 0;
-                    totalFinal = "";
+                    calcTotal = 0;
+                    total = "";
                     itemPedidoList.clear();
 
                     indicePedido = numPedidoAtual;
@@ -90,15 +90,15 @@ public class BigodeActions {
                                 Double.parseDouble(resultSet.getString("PRECO_PRODUTO")),
                                 Long.parseLong(resultSet.getString("QUANTIDADE")));
                 itemPedidoList.add(itemPedido);
-                total += Double.parseDouble(resultSet.getString("TOTAL"));
+                calcTotal += Double.parseDouble(resultSet.getString("TOTAL"));
 
             }
 
             //fechando ultima mesa
             if(itemPedidoList.size() > 0) {
-                totalFinal = "R$ " + df.format(total);
-                System.out.println("Content Test: " + totalFinal);
-                Pedido pedidoFinal = new Pedido(indicePedido, indiceMesa, indiceSessao, itemPedidoList, statusPedido, totalFinal);
+                total = "R$ " + df.format(calcTotal);
+                System.out.println("Content Test: " + total);
+                Pedido pedidoFinal = new Pedido(indicePedido, indiceMesa, indiceSessao, itemPedidoList, statusPedido, total);
                 response.add(pedidoFinal);
                 itemPedidoList.clear();
 
@@ -106,8 +106,8 @@ public class BigodeActions {
                 indiceMesa = -1;
                 indiceSessao = -1;
                 statusPedido = "";
-                total = 0;
-                totalFinal = "";
+                calcTotal = 0;
+                total = "";
             }
         } catch (Exception e) {
             System.out.println("[Erro] " + e.toString());
