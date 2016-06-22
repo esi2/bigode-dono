@@ -136,6 +136,7 @@ $(document).ready(function(){
 
 		if(!current_active) {
 			$('.article').removeClass('current');
+			$('ul').removeClass('ativado');
 			$('.description').hide();
 			artcur.addClass('current');
 			artcur.children('.description').show("slow");
@@ -143,6 +144,7 @@ $(document).ready(function(){
 
 		else {
 			artcur.removeClass('current');
+			$('ul').removeClass('ativado');
 			artcur.children('.description').hide("slow");
 		}
 		console.log(artcur.find('.preco').val());
@@ -162,29 +164,36 @@ $(document).ready(function(){
 			
 		var ckList = $(this).closest('li');//pega o Li clicado
 		var paicheck = ckList.parent();//pega a ul pai 
+		paicheck.addClass('ativado');
+		var tamanhoLista = $('.ativado li').length;
+		
+		
+		//console.log("L"+tamanhoLista);
 		var primeiroFilho = paicheck.find('li:first-child');//pega o primeiro filho da ul
 		var segundoFilho = primeiroFilho.siblings().hasClass('temp'); //checa se tem proximo
 
 		var checa = ckList.hasClass('checkList');
 		if(!checa){
 			ckList.addClass('checkList');
+
 		}
 		else{
 			ckList.removeClass('checkList');
 		}
 
-		var checaFilho = primeiroFilho.hasClass("checkList");
-		var checaTudo = primeiroFilho.nextAll().hasClass("checkList");
+		var tikados = $('.ativado .checkList').length;
+		//console.log(tikados);
 
-		if((checaTudo == true && checaFilho == true) || (checaFilho == true && segundoFilho == false)){
-		 var confirma = confirm("Todos os itens do pedido foram selecionados. Deseja baixar o pedido?");
-		 	if(confirma == true){
-		 		var pai = $(this).closest('.article');
-		 		pai.fadeOut("fast", function(){
-					pai.remove();
-				});
-		 	}
+		if(tamanhoLista == tikados){
+			 var confirma = confirm("Todos os itens do pedido foram selecionados. Deseja baixar o pedido?");
+		 	 if(confirma == true){
+		  		var pai = $(this).closest('.article');
+		  		pai.fadeOut("fast", function(){
+			 		pai.remove();
+			 	});
+		  	}
 		}
+	
 	});
 
 
