@@ -70,6 +70,7 @@ public class BigodeActions {
                 if(indicePedido != numPedidoAtual && itemPedidoList.size() > 0) {
                     totalFinal = "R$ " + df.format(total);
                     Pedido pedido = new Pedido(indicePedido, indiceMesa, indiceSessao, itemPedidoList, statusPedido, totalFinal);
+                    System.out.println("Content Test: " totalFinal);
                     response.add(pedido);
                     total = 0;
                     totalFinal = "";
@@ -95,7 +96,8 @@ public class BigodeActions {
 
             //fechando ultima mesa
             if(itemPedidoList.size() > 0) {
-                totalFinal = df.format(total);
+                totalFinal = "R$ " + df.format(total);
+                System.out.println("Content Test: " totalFinal);
                 Pedido pedidoFinal = new Pedido(indicePedido, indiceMesa, indiceSessao, itemPedidoList, statusPedido, totalFinal);
                 response.add(pedidoFinal);
                 itemPedidoList.clear();
