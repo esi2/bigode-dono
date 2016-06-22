@@ -24,16 +24,6 @@ public class AppTest {
     driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
   }
 
-  @Test
-  public void testeEntraURL() throws Exception {
-//	we = null;
-//	existe = false;
-//    driver.get(baseUrl + "/bigode-dono/");
-//    we = driver.findElement(By.cssSelector("button.btn.btn-pago"));
-//    if(we != null)
-//    	existe = true;
-//    assertTrue(existe);
-  }
   /*testes que serao adaptados com a conexao, funcionando quando existir algo a pagar
   @Test
   public void testeAbreFechaPagar() throws Exception{
@@ -46,13 +36,6 @@ public class AppTest {
   public void clicaPago() throws Exception{
 	driver.get(baseUrl + "/bigode-dono/");
     driver.findElement(By.cssSelector("button.btn.btn-pago")).click();
-  }
-  
-  @Test
-  public void testeAbreFechaEntregar() throws Exception{
-	driver.get(baseUrl + "/bigode-dono/");
-    driver.findElement(By.cssSelector("div.article.entregue-master-class > div.item.row > div.col-xs-9 > p.source")).click();
-    driver.findElement(By.cssSelector("div.article.entregue-master-class > div.item.row > div.col-xs-9 > p.source")).click();
   }
   
   @Test
