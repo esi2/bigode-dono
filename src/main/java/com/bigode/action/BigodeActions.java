@@ -12,7 +12,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import java.text.DecimalFormat;   
+import java.text.NumberFormat;   
 
 @Component
 public class BigodeActions {
@@ -29,7 +29,8 @@ public class BigodeActions {
         String statusPedido = "";
         double calcTotal = 0;
         String total = "";
-        DecimalFormat df = new DecimalFormat("R$ #.00");
+        NumberFormat df = new NumberFormat();
+        df.setCurrency(Currency.getInstance("BRL"));
 
         List<Pedido.ItemPedido> itemPedidoList = new ArrayList<>();
 
