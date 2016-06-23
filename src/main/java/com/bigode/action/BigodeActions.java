@@ -243,7 +243,7 @@ public class BigodeActions {
                     "WHERE PEDIDO.ID_SESSAO = " + idSessao + ";" + 
                     "UPDATE SESSAO " +
                     "SET SESSAO.STATUS_SESSAO = 'ENCERRADA' " +
-                    "WHERE SESSAO.ID_SESSAO = " + idSessao;
+                    "WHERE SESSAO.ID_SESSAO = " + idSessao + ";";
 
                     System.out.println(query);
 
