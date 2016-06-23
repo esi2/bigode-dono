@@ -18,10 +18,10 @@
 						<div class="article entregue-master-class">
 							<div class="item row">
 								<div class="col-xs-9">
-									<p class="source"><strong>A mesa {{= idMesa}} teve o pedido entregue!</strong></p>
+									<p class="source"><strong>A mesa {{= idMesa}} pediu a conta!</strong></p>
 								</div>
 								<div class="col-xs-3" id="btn-container">
-									<button class="btn btn-entregue show"><strong>Pago!</strong></button>
+									<button class="btn btn-entregue show"><strong class="{{= idSessao}}">Pago!</strong></button>
 									<h2 class="hide">Total: <span class="preco fonte2">{{= total}}</span></h2>
 								</div>
 							</div>
@@ -45,7 +45,7 @@
 
 								<div class="row">
 									<div class="col-xs-3 menos-padd">
-										<button class="btn btn-entregue"><strong>Pago!</strong></button>
+										<button class="btn btn-entregue"><strong class="{{= idSessao}}">Pago!</strong></button>
 									</div>
 									<div class="col-xs-9 menos-padd">
 										<a class="minimiza" href="#"><strong>Minimizar o pedido</strong></a>
@@ -101,7 +101,7 @@
 									<p class="source"><strong>A mesa {{= idMesa}} fez um pedido!</strong></p>
 								</div>
 								<div class="col-xs-3" id="btn-container">
-									<button class="btn btn-ativo show"><strong>Entregue!</strong></button>
+									<button class="btn btn-ativo show"><strong class="{{= idPedido}}">Entregue!</strong></button>
 									<h2 class="hide">Total: <span class="preco fonte2">{{= total}}</span></h2>
 								</div>
 							</div>
@@ -125,7 +125,7 @@
 
 								<div class="row">
 									<div class="col-xs-3 menos-padd">
-										<button class="btn btn-ativo"><strong>Entregue!</strong></button>
+										<button class="btn btn-ativo"><strong class="{{= idPedido}}">Entregue!</strong></button>
 									</div>
 									<div class="col-xs-9 menos-padd">
 										<a class="minimiza" href="#"><strong>Minimizar o pedido</strong></a>
