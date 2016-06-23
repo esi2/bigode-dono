@@ -159,7 +159,8 @@ $(document).ready(function(){
 				var text_str = 'pago';
 				if(botao.text() == 'Entregue!'){
 				   text_str = 'entregue';
-				} 	
+				} 
+				console.log("http://143.107.58.177:8080/bigode-dono/api/v1/pedidos/"+sessaoPedido+"/"+text_str);	
 			//	var valor_idpedido = $(this).parent().parent().find('#idpedido').val();
 				
 				$.get( "http://143.107.58.177:8080/bigode-dono/api/v1/pedidos/"+sessaoPedido+"/"+text_str)
