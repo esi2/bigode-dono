@@ -26,12 +26,9 @@ public class BigodeApi {
         return BigodeActions.getListaPedidos(list);
     }
 
-    @RequestMapping(path = "/mesas/{numeroMesa}/pedidos", method = RequestMethod.GET)
-    public Mesa getListaPedidosMesa(
-            @PathVariable Long numeroMesa
-    ){
-        //TODO: Retornar lista de pedidos de uma mesa especifica
-        return BigodeActions.getListaPedidosMesa(numeroMesa);
+    @RequestMapping(path = "/mesas/pagamento", method = RequestMethod.GET)
+    public List<Pedido> getSessoesAEncerrar() throws SQLException {
+        return BigodeActions.getSessoesAEncerrar();
     }
 
     @RequestMapping(path = "/pedidos/{numeroPedido}", method = RequestMethod.GET)
@@ -70,11 +67,6 @@ public class BigodeApi {
             @PathVariable Long numeroPedido
     ) throws SQLException {
         BigodeActions.setPedidoPago(numeroPedido);
-    }
-    
-    @RequestMapping(path = "/responsePedidos", method = RequestMethod.POST)
-    public void setResponsePedidos(@RequestParam(value="list", required=true) String list) throws SQLException{
-        BigodeActions.setResponsePedidos(list);
     }
 
 
