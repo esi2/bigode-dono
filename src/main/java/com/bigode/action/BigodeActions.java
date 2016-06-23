@@ -239,10 +239,10 @@ public class BigodeActions {
             conn = JDBCConnection.getJdbcInstance().connect();
 
             String query = "UPDATE PEDIDO " +
-                    "SET PEDIDO.STATUS_PEDIDO = 'PAGO'" +
+                    "SET PEDIDO.STATUS_PEDIDO = 'PAGO' " +
                     "WHERE PEDIDO.ID_SESSAO = " + idSessao + ";" + 
                     "UPDATE SESSAO " +
-                    "SET SESSAO.STATUS_SESSAO = 'ENCERRADA'" +
+                    "SET SESSAO.STATUS_SESSAO = 'ENCERRADA' " +
                     "WHERE SESSAO.ID_SESSAO = " + idSessao;
 
                     System.out.println(query);
