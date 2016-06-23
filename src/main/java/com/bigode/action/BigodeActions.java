@@ -89,7 +89,7 @@ public class BigodeActions {
                         new Pedido.ItemPedido(
                                 Long.parseLong(resultSet.getString("ID_PRODUTO")),
                                 resultSet.getString("NOME_PRODUTO"),
-                                df.format(Double.parseDouble(resultSet.getString("PRECO_PRODUTO"))),
+                                "R$ " + df.format(Double.parseDouble(resultSet.getString("PRECO_PRODUTO"))),
                                 Long.parseLong(resultSet.getString("QUANTIDADE")));
                 itemPedidoList.add(itemPedido);
                 calcTotal += Double.parseDouble(resultSet.getString("TOTAL"));
@@ -99,7 +99,7 @@ public class BigodeActions {
             //fechando ultima mesa
             if(itemPedidoList.size() > 0) {
                 total = df.format(calcTotal);
-                Pedido pedidoFinal = new Pedido(indicePedido, indiceMesa, indiceSessao, itemPedidoList, statusPedido, total);
+                Pedido pedidoFinal = new Pedido(indicePedido, indiceMesa, indiceSessao, itemPedidoList, statusPedido, "R$ " + total);
                 response.add(pedidoFinal);
                 itemPedidoList.clear();
 
