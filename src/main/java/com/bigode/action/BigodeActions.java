@@ -10,7 +10,9 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Currency;
 import java.util.List;
 import java.text.NumberFormat;   
 
@@ -29,8 +31,7 @@ public class BigodeActions {
         String statusPedido = "";
         double calcTotal = 0;
         String total = "";
-        NumberFormat df = new NumberFormat();
-        df.setCurrency(Currency.getInstance("BRL"));
+        DecimalFormat df = new DecimalFormat("#.00");
 
         List<Pedido.ItemPedido> itemPedidoList = new ArrayList<>();
 
@@ -88,7 +89,7 @@ public class BigodeActions {
                         new Pedido.ItemPedido(
                                 Long.parseLong(resultSet.getString("ID_PRODUTO")),
                                 resultSet.getString("NOME_PRODUTO"),
-                                df.format(Double.parseDouble(resultSet.getString("PRECO_PRODUTO"))),
+                                Double.parseDouble(df.format(Double.parseDouble(resultSet.getString("PRECO_PRODUTO")))),
                                 Long.parseLong(resultSet.getString("QUANTIDADE")));
                 itemPedidoList.add(itemPedido);
                 calcTotal += Double.parseDouble(resultSet.getString("TOTAL"));
