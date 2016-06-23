@@ -147,20 +147,19 @@ public class BigodeActions {
                     "LEFT JOIN PRODUTO ON PRODUTO_PEDIDO.ID_PRODUTO = PRODUTO.ID_PRODUTO " +
 
                     "WHERE STATUS_SESSAO = 'PAGAMENTO' AND STATUS_PEDIDO != 'PAGO' AND MESA.ID_BAR = 1 " +
-                    "ORDER BY PEDIDO.ID_PEDIDO DESC"
+                    "AND PRODUTO.ID_PRODUTO IS NOT NULL AND PRODUTO_PEDIDO.QUANTIDADE IS NOT NULL " +
+                    "ORDER BY MESA.ID_MESA DESC, SESSAO.ID_SESSAO ASC"
                     ;
 
             statement = conn.createStatement();
             ResultSet resultSet = statement.executeQuery(query);
 
             while (resultSet.next()){
-                long numPedidoAtual = Long.parseLong(resultSet.getString("ID_PEDIDO"));
                 long numMesaAtual = Long.parseLong(resultSet.getString("ID_MESA"));
                 long numSessaoAtual = Long.parseLong(resultSet.getString("ID_SESSAO"));
                 String statusPedidoAtual = resultSet.getString("STATUS_PEDIDO");
 
                 if(resultSet.getRow() == 1){
-                    indicePedido = numPedidoAtual;
                     indiceMesa = numMesaAtual;
                     indiceSessao = numSessaoAtual;
                     statusPedido = statusPedidoAtual;
@@ -173,14 +172,12 @@ public class BigodeActions {
                     calcTotal = 0;
                     total = "";
                     itemPedidoList.clear();
-
-                    indicePedido = numPedidoAtual;
+                    
                     indiceMesa = numMesaAtual;
                     indiceSessao = numSessaoAtual;
                     statusPedido = statusPedidoAtual;
 
                 }
-
 
                 Pedido.ItemPedido itemPedido =
                         new Pedido.ItemPedido(
