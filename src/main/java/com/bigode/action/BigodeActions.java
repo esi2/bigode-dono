@@ -49,7 +49,7 @@ public class BigodeActions {
                     "LEFT JOIN PRODUTO_PEDIDO ON PEDIDO.ID_PEDIDO = PRODUTO_PEDIDO.ID_PEDIDO " +
                     "LEFT JOIN PRODUTO ON PRODUTO_PEDIDO.ID_PRODUTO = PRODUTO.ID_PRODUTO " +
 
-                    "WHERE STATUS_SESSAO = 'ATIVA' AND STATUS_PEDIDO != 'PAGO' AND MESA.ID_BAR = 1 " +
+                    "WHERE STATUS_SESSAO = 'ATIVA' AND STATUS_PEDIDO = 'PENDENTE' AND MESA.ID_BAR = 1 " +
                     "ORDER BY PEDIDO.ID_PEDIDO DESC"
                     ;
 
