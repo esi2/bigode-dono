@@ -89,7 +89,7 @@ public class BigodeActions {
                         new Pedido.ItemPedido(
                                 Long.parseLong(resultSet.getString("ID_PRODUTO")),
                                 resultSet.getString("NOME_PRODUTO"),
-                                Double.parseDouble(df.format(Double.parseDouble(resultSet.getString("PRECO_PRODUTO")))),
+                                df.format(Double.parseDouble(resultSet.getString("PRECO_PRODUTO"))),
                                 Long.parseLong(resultSet.getString("QUANTIDADE")));
                 itemPedidoList.add(itemPedido);
                 calcTotal += Double.parseDouble(resultSet.getString("TOTAL"));
