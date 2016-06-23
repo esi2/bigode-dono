@@ -152,12 +152,36 @@ $(document).ready(function(){
 	});
 
 
-	$('.btn').click(function(){
-			$('.description').hide();
-			var pai = $(this).closest('.article');
-				pai.fadeOut("fast", function(){
-					pai.remove();
+	$('.btn').on('click', function(e){
+				
+				botao = $(this);
+				var sessaoPedido = botao.find('strong').attr('class');	
+				var text_str = 'pago';
+				if(botao.text() == 'Entregue!'){
+				   text_str = 'entregue';
+				} 	
+			//	var valor_idpedido = $(this).parent().parent().find('#idpedido').val();
+				
+				$.get( "http://143.107.58.177:8080/bigode-dono/api/v1/pedidos/"+sessaoPedido+"/"+text_str)
+				.done(function() {
+					$('.description').hide();
+					  
+						var pai = botao.closest('.article');
+						pai.fadeOut("fast", function(){
+							pai.remove();	
+						});
+						
+						//remove
+					//	var index = lista_id_pedidos.indexOf(Number(valor_idpedido));
+						
+					//	if (index >= 0) {
+					//		lista_id_pedidos.splice( index, 1 );
+					//	}
 				})
+				  
+				.fail(function() {
+					alert( "error" );
+				});
 	});
 
 	$('.btn-danger').click(function(){
