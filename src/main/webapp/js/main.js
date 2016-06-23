@@ -1,6 +1,6 @@
 $(document).ready(function(){
 
-	var url = "http://localhost:8080/api/v1/mesas";
+	var url = "http://143.107.58.177:8080/api/v1/mesas";
 	var interval = 1000;   //milliseconds to refresh
 	var lista_id_pedidos = [];
 	var botao = null;
@@ -28,7 +28,7 @@ $(document).ready(function(){
 				
 				var valor_idpedido = $(this).parent().parent().find('#idpedido').val();
 				
-				$.get( "http://localhost:8080/api/v1/pedidos/"+valor_idpedido+"/"+text_str) 
+				$.get( "http://143.107.58.177:8080/api/v1/pedidos/"+valor_idpedido+"/"+text_str) 
 				.done(function() {
 					$('.description').hide();
 					  
@@ -152,7 +152,7 @@ $(document).ready(function(){
 				 var confirma = confirm("Todos os itens do pedido foram selecionados. Deseja baixar o pedido?");
 					if(confirma == true){
 						
-						$.get( "http://localhost:8080/api/v1/pedidos/"+valor_idpedido+"/"+"entregue")
+						$.get( "http://143.107.58.177:8080/api/v1/pedidos/"+valor_idpedido+"/"+"entregue")
 						.done(function() {
 							var pai = eu.closest('.article');
 							pai.fadeOut("fast", function(){	
@@ -184,7 +184,7 @@ $(document).ready(function(){
 					var value = $(this).parent().parent().find('#iditempedido').val();
 					var valor_idpedido = $(this).parent().parent().find('#idpedido2').val();
 
-					$.get( "http://localhost:8080/api/v1/pedidos/"+value+"/"+"cancel") 
+					$.get( "http://143.107.58.177:8080/api/v1/pedidos/"+value+"/"+"cancel") 
 					.done(function() {
 						var lista = eu.parent().parent();
 						 
