@@ -240,16 +240,19 @@ public class BigodeActions {
 
             String query = "UPDATE PEDIDO " +
                     "SET PEDIDO.STATUS_PEDIDO = 'PAGO' " +
-                    "WHERE PEDIDO.ID_SESSAO = " + idSessao + ";" + 
-                    "UPDATE SESSAO " +
-                    "SET SESSAO.STATUS_SESSAO = 'ENCERRADA' " +
-                    "WHERE SESSAO.ID_SESSAO = " + idSessao + ";";
+                    "WHERE PEDIDO.ID_SESSAO = " + idSessao;
 
                     System.out.println(query);
 
             statement = conn.createStatement();
             statement.executeUpdate(query);
 
+
+            String queryPfvSemDP = "UPDATE SESSAO " +
+                    "SET SESSAO.STATUS_SESSAO = 'ENCERRADA' " +
+                    "WHERE SESSAO.ID_SESSAO = " + idSessao;
+            Statement emergencia = conn.createStatement();
+            emergencia.executeUpdate(queryPfvSemDP);
         } catch (Exception e) {
             System.out.println("[Erro] " + e.toString());
         } finally {
