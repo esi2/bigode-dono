@@ -165,14 +165,14 @@ public class BigodeActions {
                     statusPedido = statusPedidoAtual;
                 }
 
-                if(indiceMesa != numMesaAtual && itemPedidoList.size() > 0) {
+                if( (indiceSessao != numSessaoAtual || indiceMesa != numMesaAtual) && itemPedidoList.size() > 0) {
                     total = df.format(calcTotal);
                     Pedido pedido = new Pedido(-1L, indiceMesa, indiceSessao, itemPedidoList, statusPedido, total);
                     response.add(pedido);
                     calcTotal = 0;
                     total = "";
                     itemPedidoList.clear();
-                    
+
                     indiceMesa = numMesaAtual;
                     indiceSessao = numSessaoAtual;
                     statusPedido = statusPedidoAtual;
