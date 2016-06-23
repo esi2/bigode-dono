@@ -245,7 +245,7 @@ public class BigodeActions {
             statement = conn.createStatement();
             statement.executeUpdate(query);
 
-            conn.close;
+            conn.close();
 
             conn = JDBCConnection.getJdbcInstance().connect();
 
