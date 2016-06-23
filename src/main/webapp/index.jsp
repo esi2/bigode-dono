@@ -18,7 +18,7 @@
 						<div class="article entregue-master-class">
 							<div class="item row">
 								<div class="col-xs-9">
-									<p class="source"><strong>A mesa {{= idMesa}} teve o pedido entregue!</strong></p>
+									<p class="source"><strong>A mesa {{= idMesa}} pediu a conta!</strong></p>
 								</div>
 								<div class="col-xs-3" id="btn-container">
 									<button class="btn btn-entregue show"><strong>Pago!</strong></button>
