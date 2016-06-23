@@ -245,6 +245,8 @@ public class BigodeActions {
                     "SET SESSAO.STATUS_SESSAO = 'ENCERRADA'" +
                     "WHERE SESSAO.ID_SESSAO = " + idSessao;
 
+                    System.out.println(query);
+
             statement = conn.createStatement();
             statement.executeUpdate(query);
 
