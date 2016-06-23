@@ -1,4 +1,4 @@
- 
+
  /*(function() {
 	 	var url = "http://143.107.58.177:8080/bigode-dono/api/v1/mesas";
 	 	$.getJSON( url, {
@@ -36,7 +36,8 @@ $(document).ready(function(){
 	 	}).done(function(data) {		
 				$("#clientTemplate").tmpl(data).appendTo("#todos-pedidos");
 		});
-});
+
+		
 
 	$( window ).load(function() {		
 	 	$('.item').click(function(e){
@@ -229,7 +230,7 @@ $(document).ready(function(){
 		}
 	});
   });
- 		 
+}); 		 
 
 
 	// Largura do logo principal

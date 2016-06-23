@@ -245,10 +245,15 @@ public class BigodeActions {
             statement = conn.createStatement();
             statement.executeUpdate(query);
 
+            conn.close;
+
+            conn = JDBCConnection.getJdbcInstance().connect();
+
             String query2 = "UPDATE SESSAO " +
                     "SET SESSAO.STATUS_SESSAO = 'ENCERRADA'" +
                     "WHERE SESSAO.ID_SESSAO = " + idSessao;
 
+            statement = conn.createStatement();
             statement.executeUpdate(query);
 
         } catch (Exception e) {
