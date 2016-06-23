@@ -36,8 +36,9 @@ $(document).ready(function(){
 	 	}).done(function(data) {		
 				$("#clientTemplate").tmpl(data).appendTo("#todos-pedidos");
 		});
+});
 
-	 			
+	$( window ).load(function() {		
 	 	$('.item').click(function(e){
 
 		var artcur = $(this).parent();
@@ -202,8 +203,9 @@ $(document).ready(function(){
 			prevArticle.children('.description').show("slow");
 		}
 	});
+  });
  		 
-});
+
 
 	// Largura do logo principal
 	// var ew = $(".igBigode").width();
