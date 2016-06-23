@@ -136,19 +136,20 @@ public class BigodeActions {
             conn = JDBCConnection.getJdbcInstance().connect();
 
             String query =
-                    "SELECT (PRODUTO.PRECO_PRODUTO * PRODUTO_PEDIDO.QUANTIDADE) AS TOTAL,"+
-                    "PEDIDO.ID_PEDIDO, PEDIDO.STATUS_PEDIDO, MESA.ID_BAR, MESA.ID_MESA, " +
-                    "MESA.NUM_MESA, MESA.STATUS_MESA, SESSAO.ID_SESSAO, SESSAO.STATUS_SESSAO, " +
-                    "PRODUTO_PEDIDO.ID_PRODUTO, PRODUTO_PEDIDO.QUANTIDADE, PRODUTO.NOME_PRODUTO, " +
-                    "PRODUTO.PRECO_PRODUTO, PRODUTO.FOTO_PRODUTO FROM PEDIDO " +
-                    "LEFT JOIN MESA ON PEDIDO.ID_MESA = MESA.ID_MESA " +
-                    "LEFT JOIN SESSAO ON PEDIDO.ID_SESSAO = SESSAO.ID_SESSAO " +
-                    "LEFT JOIN PRODUTO_PEDIDO ON PEDIDO.ID_PEDIDO = PRODUTO_PEDIDO.ID_PEDIDO " +
-                    "LEFT JOIN PRODUTO ON PRODUTO_PEDIDO.ID_PRODUTO = PRODUTO.ID_PRODUTO " +
+                "SELECT SUM(QUANTIDADE) AS QTD_FINAL, (PRECO_PRODUTO * SUM(QUANTIDADE)) AS TOTAL, query1.* FROM " +
+                "(SELECT " +
+                "PEDIDO.ID_PEDIDO, PEDIDO.STATUS_PEDIDO, MESA.ID_BAR, MESA.ID_MESA, "+
+                "MESA.NUM_MESA, MESA.STATUS_MESA, SESSAO.ID_SESSAO, SESSAO.STATUS_SESSAO, "+
+                "PRODUTO_PEDIDO.ID_PRODUTO, PRODUTO_PEDIDO.QUANTIDADE, PRODUTO.NOME_PRODUTO, "+
+                "PRODUTO.PRECO_PRODUTO, PRODUTO.FOTO_PRODUTO FROM PEDIDO "+
+                "LEFT JOIN MESA ON PEDIDO.ID_MESA = MESA.ID_MESA "+
+                "LEFT JOIN SESSAO ON PEDIDO.ID_SESSAO = SESSAO.ID_SESSAO "+
+                "LEFT JOIN PRODUTO_PEDIDO ON PEDIDO.ID_PEDIDO = PRODUTO_PEDIDO.ID_PEDIDO "+
+                "LEFT JOIN PRODUTO ON PRODUTO_PEDIDO.ID_PRODUTO = PRODUTO.ID_PRODUTO "+
 
-                    "WHERE STATUS_SESSAO = 'PAGAMENTO' AND STATUS_PEDIDO != 'PAGO' AND MESA.ID_BAR = 1 " +
-                    "AND PRODUTO.ID_PRODUTO IS NOT NULL AND PRODUTO_PEDIDO.QUANTIDADE IS NOT NULL " +
-                    "ORDER BY MESA.ID_MESA DESC, SESSAO.ID_SESSAO ASC"
+                "WHERE STATUS_SESSAO = 'PAGAMENTO' AND STATUS_PEDIDO != 'PAGO' AND MESA.ID_BAR = 1 AND PRODUTO.ID_PRODUTO IS NOT NULL AND PRODUTO_PEDIDO.QUANTIDADE IS NOT NULL "+
+                "ORDER BY MESA.ID_MESA DESC, SESSAO.ID_SESSAO ASC) query1 "+
+                "GROUP BY ID_BAR, ID_MESA, NUM_MESA, STATUS_MESA, ID_SESSAO, STATUS_SESSAO, ID_PRODUTO, NOME_PRODUTO, PRECO_PRODUTO, FOTO_PRODUTO; "
                     ;
 
             statement = conn.createStatement();
@@ -157,7 +158,7 @@ public class BigodeActions {
             while (resultSet.next()){
                 long numMesaAtual = Long.parseLong(resultSet.getString("ID_MESA"));
                 long numSessaoAtual = Long.parseLong(resultSet.getString("ID_SESSAO"));
-                String statusPedidoAtual = resultSet.getString("STATUS_PEDIDO");
+                String statusPedidoAtual = resultSet.getString("STATUS_SESSAO");
 
                 if(resultSet.getRow() == 1){
                     indiceMesa = numMesaAtual;
@@ -184,7 +185,7 @@ public class BigodeActions {
                                 Long.parseLong(resultSet.getString("ID_PRODUTO")),
                                 resultSet.getString("NOME_PRODUTO"),
                                 df.format(Double.parseDouble(resultSet.getString("PRECO_PRODUTO"))),
-                                Long.parseLong(resultSet.getString("QUANTIDADE")));
+                                Long.parseLong(resultSet.getString("QTD_FINAL")));
                 itemPedidoList.add(itemPedido);
                 calcTotal += Double.parseDouble(resultSet.getString("TOTAL"));
 
