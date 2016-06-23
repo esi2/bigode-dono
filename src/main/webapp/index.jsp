@@ -14,7 +14,7 @@
 
 		<script id="clientTemplate" type="text/html">
 
-					{{if status == "ENTREGUE"}}
+					{{if status == "PAGAMENTO"}}
 						<div class="article entregue-master-class">
 							<div class="item row">
 								<div class="col-xs-9">
