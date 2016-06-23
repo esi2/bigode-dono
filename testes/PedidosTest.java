@@ -29,22 +29,22 @@ public class PedidosTest extends AbstractTests {
 	  assertTrue(textoPedido.getText().equals("A mesa 1 fez um pedido!"));
   }
   
-  @Test
-  public void testeAbreFechaPedido() throws Exception{
-	  List<WebElement> pedidos = driver.findElements(By.cssSelector("div.item.row"));
-	  List<WebElement> minimizas = driver.findElements(By.cssSelector(".minimiza"));
-	  int i = 0;
-	  for (WebElement elemento: pedidos){
-		  elemento.click();
-		  WebElement mnz = minimizas.get(i);
-		  Thread.sleep(1000);
-		  assertTrue(mnz.isDisplayed());
-		  elemento.click();
-		  Thread.sleep(1000);
-		  assertTrue(!mnz.isDisplayed());
-		  i++;
-	  }
-  }
+  // @Test
+  // public void testeAbreFechaPedido() throws Exception{
+	 //  List<WebElement> pedidos = driver.findElements(By.cssSelector("div.item.row"));
+	 //  List<WebElement> minimizas = driver.findElements(By.cssSelector(".minimiza"));
+	 //  int i = 0;
+	 //  for (WebElement elemento: pedidos){
+		//   elemento.click();
+		//   WebElement mnz = minimizas.get(i);
+		//   Thread.sleep(1000);
+		//   assertTrue(mnz.isDisplayed());
+		//   elemento.click();
+		//   Thread.sleep(1000);
+		//   assertTrue(!mnz.isDisplayed());
+		//   i++;
+	 //  }
+  // }
   
   /*
   @Test
