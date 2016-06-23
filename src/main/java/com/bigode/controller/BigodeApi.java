@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.sql.SQLException;
@@ -20,10 +21,9 @@ public class BigodeApi {
     @Autowired
     private BigodeActions bigodeActions = null;
 
-    @RequestMapping(path = "/mesas", method = RequestMethod.GET)
-    public List<Pedido> getListaPedidos() throws SQLException{
-        //TODO: Implementar objetos para sessão e update no objeto mesa (após isso, inserir ambos nos pedidos)
-        return BigodeActions.getListaPedidos();
+    @RequestMapping(path = "/mesas", method = RequestMethod.POST)
+    public List<Pedido> getListaPedidos(@RequestParam(value="list", required=true) String list) throws SQLException{
+        return BigodeActions.getListaPedidos(list);
     }
 
     @RequestMapping(path = "/mesas/{numeroMesa}/pedidos", method = RequestMethod.GET)
@@ -41,19 +41,40 @@ public class BigodeApi {
         //TODO: Retornar detalhes de um pedido especifico
         return BigodeActions.getDetalhesPedido(numeroPedido);
     }
-
+    
     @RequestMapping(path = "/pedidos/{numeroPedido}/entregue", method = RequestMethod.GET)
     public void setPedidoEntregue(
             @PathVariable Long numeroPedido
     ) throws SQLException {
         BigodeActions.setPedidoEntregue(numeroPedido);
     }
+    
+    @RequestMapping(path = "/pedidos/{numeroPedido}/cancelpedido", method = RequestMethod.GET)
+    public void setPedidoCancel(
+            @PathVariable Long numeroPedido
+    ) throws SQLException {
+        BigodeActions.setPedidoCancel(numeroPedido);
+    }
+    
+    @RequestMapping(path = "/pedidos/{numeroItemPedido}/cancel", method = RequestMethod.GET)
+    public void setItemPedidoCancel(
+            @PathVariable Long numeroItemPedido
+    ) throws SQLException {
+        BigodeActions.setItemPedidoCancel(numeroItemPedido);
+    }
+
+   
 
     @RequestMapping(path = "/pedidos/{numeroPedido}/pago", method = RequestMethod.GET)
     public void setPedidoPago(
             @PathVariable Long numeroPedido
     ) throws SQLException {
         BigodeActions.setPedidoPago(numeroPedido);
+    }
+    
+    @RequestMapping(path = "/responsePedidos", method = RequestMethod.POST)
+    public void setResponsePedidos(@RequestParam(value="list", required=true) String list) throws SQLException{
+        BigodeActions.setResponsePedidos(list);
     }
 
 

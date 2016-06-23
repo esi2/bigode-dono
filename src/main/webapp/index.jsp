@@ -3,6 +3,7 @@
 	<head>
 
 		<meta charset="utf-8">
+		
 		<link href="./css/bootstrap.min.css" rel="stylesheet" media="all">
 		<link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
 		<link rel="stylesheet" href="./css/style.css">
@@ -17,11 +18,13 @@
 					{{if status == "ENTREGUE"}}
 						<div class="article entregue-master-class">
 							<div class="item row">
+
+							<input type="hidden" name="idpedidoname" id="idpedido" value="{{= idPedido}}"/>
 								<div class="col-xs-9">
 									<p class="source"><strong>A mesa {{= idMesa}} teve o pedido entregue!</strong></p>
 								</div>
 								<div class="col-xs-3" id="btn-container">
-									<button class="btn btn-entregue show"><strong>Pago!</strong></button>
+									<button class="btn btn-entregue show" id="btn"><strong>Pago!</strong></button>
 									<h2 class="hide">Total: <span class="preco fonte2">{{= total}}</span></h2>
 								</div>
 							</div>
@@ -34,7 +37,7 @@
 											<span class="not-bold texto-dir"> {{= qtd}} x 
 												<span class="preco">R$ {{= preco}}</span>
 											</span>
-  										<button type="button" class="btn-danger btn-xs" aria-label="Right Align">
+  										<button type="button"  class="btn-danger btn-xs" aria-label="Right Align">
 											<span class="glyphicon glyphicon-remove"></span>
 										</button>
 										</li>
@@ -42,8 +45,10 @@
 									{{/each}}
 									</ul>
 								</div>
-
+								
+								
 								<div class="row">
+									<input type="hidden" name="idpedidoname" id="idpedido" value="{{= idPedido}}"/>
 									<div class="col-xs-3 menos-padd">
 										<button class="btn btn-entregue"><strong>Pago!</strong></button>
 									</div>
@@ -97,26 +102,33 @@
 					{{else}}
 						<div class="article ativo-master-class">
 							<div class="item row">
+								<input type="hidden" name="idpedidoname" id="idpedido" value="{{= idPedido}}"/>
 								<div class="col-xs-9">
 									<p class="source"><strong>A mesa {{= idMesa}} fez um pedido!</strong></p>
 								</div>
 								<div class="col-xs-3" id="btn-container">
-									<button class="btn btn-ativo show"><strong>Entregue!</strong></button>
+									<button class="btn btn-ativo show" id="btn"><strong>Entregue!</strong></button>
 									<h2 class="hide">Total: <span class="preco fonte2">{{= total}}</span></h2>
 								</div>
 							</div>
-							<div class="description row">
-								<div class="col-xs-12 container-itens">
-									<ul>
+							<div class="description row" >
+								<div class="col-xs-12 container-itens" >
+									<ul id="idTest">
 									{{each itens}}
 										<li class="temp">
+										<input type="hidden" name="iditempedido" id="iditempedido" value="{{= id_produto_pedido}}"/>
+										<input type="hidden" name="idpedidoname2" id="idpedido2" value="{{= idPedido}}"/>										
+										
 										<input class="cklist" type="checkbox" name="demo" value="one" /> {{= nome}} 
-											<span class="not-bold texto-dir">{{= qtd}} x 
-												<span class="preco">R$ {{= preco}}</span>
-											</span>
+										
+										<span class="not-bold texto-dir">{{= qtd}} x 
+											<span class="preco">R$ {{= preco}}</span>
+										</span>
+										
 										<button type="button" class="btn-danger btn-xs" aria-label="Right Align">
 											<span class="glyphicon glyphicon-remove"></span>
 										</button>
+										
 										</li>
 										<hr>
 									{{/each}}
@@ -124,6 +136,7 @@
 								</div>
 
 								<div class="row">
+								<input type="hidden" name="idpedidoname" id="idpedido" value="{{= idPedido}}"/>
 									<div class="col-xs-3 menos-padd">
 										<button class="btn btn-ativo"><strong>Entregue!</strong></button>
 									</div>

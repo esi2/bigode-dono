@@ -46,12 +46,14 @@ public class Pedido {
         @JsonProperty private String nome;
         @JsonProperty private String preco;
         @JsonProperty private long qtd;
+        @JsonProperty private long id_produto_pedido;
 
-        public ItemPedido(long id, String nome, String preco, long qtd) {
+        public ItemPedido(long id, String nome, String preco, long qtd, long id_produto_pedido) {
             this.id = id;
             this.nome = nome;
             this.preco = preco;
             this.qtd = qtd;
+            this.id_produto_pedido = id_produto_pedido;
         }
 
         public long getId() {return id;}
@@ -61,5 +63,7 @@ public class Pedido {
         public String getPreco() {return preco;}
 
         public long getQtd() {return qtd;}
+        
+        public long getIdProdutoPedido() {return id_produto_pedido;}
     }
 }

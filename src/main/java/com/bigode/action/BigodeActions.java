@@ -21,7 +21,7 @@ public class BigodeActions {
     private final int idBar = 1;
     private static Connection conn;
 
-    public static List<Pedido> getListaPedidos() throws SQLException {
+    public static List<Pedido> getListaPedidos(String list) throws SQLException {
         List<Pedido> response = new ArrayList<>();
         Statement statement;
 
@@ -36,25 +36,35 @@ public class BigodeActions {
         List<Pedido.ItemPedido> itemPedidoList = new ArrayList<>();
 
         try {
+        	
+        	StringBuilder query = new StringBuilder();
+        	
             conn = JDBCConnection.getJdbcInstance().connect();
 
-            String query =
-                    "SELECT (PRODUTO.PRECO_PRODUTO * PRODUTO_PEDIDO.QUANTIDADE) AS TOTAL,"+
-                    "PEDIDO.ID_PEDIDO, PEDIDO.STATUS_PEDIDO, MESA.ID_BAR, MESA.ID_MESA, " +
-                    "MESA.NUM_MESA, MESA.STATUS_MESA, SESSAO.ID_SESSAO, SESSAO.STATUS_SESSAO, " +
-                    "PRODUTO_PEDIDO.ID_PRODUTO, PRODUTO_PEDIDO.QUANTIDADE, PRODUTO.NOME_PRODUTO, " +
-                    "PRODUTO.PRECO_PRODUTO, PRODUTO.FOTO_PRODUTO FROM PEDIDO " +
-                    "LEFT JOIN MESA ON PEDIDO.ID_MESA = MESA.ID_MESA " +
-                    "LEFT JOIN SESSAO ON PEDIDO.ID_SESSAO = SESSAO.ID_SESSAO " +
-                    "LEFT JOIN PRODUTO_PEDIDO ON PEDIDO.ID_PEDIDO = PRODUTO_PEDIDO.ID_PEDIDO " +
-                    "LEFT JOIN PRODUTO ON PRODUTO_PEDIDO.ID_PRODUTO = PRODUTO.ID_PRODUTO " +
+            query.append(
+            		"SELECT (PRODUTO.PRECO_PRODUTO * PRODUTO_PEDIDO.QUANTIDADE) AS TOTAL, PRODUTO_PEDIDO.ID_PRODUTO_PEDIDO, "+
+                            "PEDIDO.ID_PEDIDO, PEDIDO.STATUS_PEDIDO, MESA.ID_BAR, MESA.ID_MESA, " +
+                            "MESA.NUM_MESA, MESA.STATUS_MESA, SESSAO.ID_SESSAO, SESSAO.STATUS_SESSAO, " +
+                            "PRODUTO_PEDIDO.ID_PRODUTO, PRODUTO_PEDIDO.QUANTIDADE, PRODUTO.NOME_PRODUTO, " +
+                            "PRODUTO.PRECO_PRODUTO, PRODUTO.FOTO_PRODUTO FROM PEDIDO " +
+                            "LEFT JOIN MESA ON PEDIDO.ID_MESA = MESA.ID_MESA " +
+                            "LEFT JOIN SESSAO ON PEDIDO.ID_SESSAO = SESSAO.ID_SESSAO " +
+                            "LEFT JOIN PRODUTO_PEDIDO ON PEDIDO.ID_PEDIDO = PRODUTO_PEDIDO.ID_PEDIDO " +
+                            "LEFT JOIN PRODUTO ON PRODUTO_PEDIDO.ID_PRODUTO = PRODUTO.ID_PRODUTO " +
 
-                    "WHERE STATUS_SESSAO = 'ATIVA' AND STATUS_PEDIDO != 'PAGO' AND MESA.ID_BAR = 1 " +
-                    "ORDER BY PEDIDO.ID_PEDIDO DESC"
-                    ;
+					"WHERE MESA.ID_BAR = 1 AND STATUS_PEDIDO != 'PAGO' AND STATUS_PEDIDO != 'CANCELADO' AND MESA.ID_MESA = 2"
+                    //TIVE QUE TIRAR ISSO STATUS_SESSAO = 'ATIVA'
+            		);
+            
+            if(list != null && !list.isEmpty())
+	            for (String retval: list.split(",")){
+	            	query.append(" AND PRODUTO_PEDIDO.ID_PEDIDO != "+retval);
+	            }
+            
+            query.append(" ORDER BY PEDIDO.ID_PEDIDO DESC");
 
             statement = conn.createStatement();
-            ResultSet resultSet = statement.executeQuery(query);
+            ResultSet resultSet = statement.executeQuery(query.toString());
 
             while (resultSet.next()){
                 long numPedidoAtual = Long.parseLong(resultSet.getString("ID_PEDIDO"));
@@ -90,7 +100,8 @@ public class BigodeActions {
                                 Long.parseLong(resultSet.getString("ID_PRODUTO")),
                                 resultSet.getString("NOME_PRODUTO"),
                                 df.format(Double.parseDouble(resultSet.getString("PRECO_PRODUTO"))),
-                                Long.parseLong(resultSet.getString("QUANTIDADE")));
+                                Long.parseLong(resultSet.getString("QUANTIDADE")),
+                        	Long.parseLong(resultSet.getString("ID_PRODUTO_PEDIDO")));
                 itemPedidoList.add(itemPedido);
                 calcTotal += Double.parseDouble(resultSet.getString("TOTAL"));
 
@@ -124,9 +135,11 @@ public class BigodeActions {
         try {
             conn = JDBCConnection.getJdbcInstance().connect();
 
+            //System.out.println("testeEntregue");
+            
             String query = "UPDATE PEDIDO " +
-                    "SET PEDIDO.STATUS_PEDIDO = 'ENTREGUE'" +
-                    "WHERE PEDIDO.ID_PEDIDO = " + idPedido;
+                    "SET STATUS_PEDIDO = 'ENTREGUE'" +
+                    "WHERE ID_PEDIDO = " + idPedido;
 
             statement = conn.createStatement();
             statement.executeUpdate(query);
@@ -136,6 +149,52 @@ public class BigodeActions {
             conn.close();
         }
     }
+    
+    public static void setPedidoCancel(Long idPedido) throws SQLException {
+        Statement statement;
+
+        try {
+            conn = JDBCConnection.getJdbcInstance().connect();
+
+            //System.out.println("testeCancel");
+            
+            String query = "UPDATE PEDIDO " +
+                    "SET STATUS_PEDIDO = 'CANCELADO'" +
+                    "WHERE ID_PEDIDO = " + idPedido;
+
+            statement = conn.createStatement();
+            statement.executeUpdate(query);
+        } catch (Exception e) {
+            System.out.println("[Erro] " + e.toString());
+        } finally {
+            conn.close();
+        }
+    }
+    
+    public static void setItemPedidoCancel(Long itemPedido) throws SQLException{
+    	Statement statement;
+
+        try {
+            conn = JDBCConnection.getJdbcInstance().connect();
+
+            
+            
+            String query = "DELETE FROM PRODUTO_PEDIDO " +
+                    "WHERE ID_PRODUTO_PEDIDO = " + itemPedido;
+            
+            //System.out.println(query);
+
+            statement = conn.createStatement();
+            statement.executeUpdate(query);
+            
+        } catch (Exception e) {
+            System.out.println("[Erro] " + e.toString());
+        } finally {
+            conn.close();
+        }
+    	
+    	
+    }
 
     public static void setPedidoPago(Long idPedido) throws SQLException {
         Statement statement;
@@ -143,9 +202,11 @@ public class BigodeActions {
         try {
             conn = JDBCConnection.getJdbcInstance().connect();
 
+            //System.out.println("testePago");
+            
             String query = "UPDATE PEDIDO " +
-                    "SET PEDIDO.STATUS_PEDIDO = 'PAGO'" +
-                    "WHERE PEDIDO.ID_PEDIDO = " + idPedido;
+                    "SET STATUS_PEDIDO = 'PAGO'" +
+                    "WHERE ID_PEDIDO = " + idPedido;
 
             statement = conn.createStatement();
             statement.executeUpdate(query);
@@ -162,6 +223,37 @@ public class BigodeActions {
 
         //TODO
         return response;
+    }
+    
+    public static void setResponsePedidos(String list) throws SQLException {
+        Statement statement;
+        
+        System.out.println(list);
+        StringBuilder query = new StringBuilder();
+       
+        try {
+            conn = JDBCConnection.getJdbcInstance().connect();
+
+            query.append("UPDATE PRODUTO_PEDIDO " +
+                    "SET enviado = true " +
+                    "WHERE ID_PEDIDO = 0") ;
+            
+            for (String retval: list.split(",")){
+            	query.append(" OR ID_PEDIDO = "+retval);
+            }
+            
+            System.out.println("pq entras aqui?");
+            
+            statement = conn.createStatement();
+            statement.executeUpdate(query.toString());
+            
+            
+        } catch (Exception e) {
+            System.out.println("[Erro] " + e.toString());
+        } finally {
+            conn.close();
+        }
+		
     }
 
     public static Pedido getDetalhesPedido(Long numeroPedido){
